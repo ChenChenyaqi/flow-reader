@@ -1,19 +1,22 @@
-import { createApp } from "vue";
-import ContentApp from "./ContentApp.vue";
-import "../assets/tailwind.css"; // 引入样式，Vite 会处理它
+import { createApp } from 'vue'
+import ContentApp from './ContentApp.vue'
+import tailwindContent from '../assets/tailwind.css?inline' // 引入样式，Vite 会处理它
 
 // 创建宿主元素
-const host = document.createElement("div");
-host.id = "fluent-lens-host";
-document.body.appendChild(host);
+const host = document.createElement('div')
+host.id = 'fluent-lens-host'
+document.body.appendChild(host)
 
 // 创建 Shadow DOM
-const shadow = host.attachShadow({ mode: "open" });
+const shadow = host.attachShadow({ mode: 'open' })
+const style = document.createElement('style')
+style.textContent = tailwindContent
+shadow.appendChild(style)
 
 // 创建 Vue 挂载点
-const appContainer = document.createElement("div");
-appContainer.id = "app";
-shadow.appendChild(appContainer);
+const appContainer = document.createElement('div')
+appContainer.id = 'app'
+shadow.appendChild(appContainer)
 
 // 关键：将 Vite 注入的 style 移动到 Shadow DOM 中
 // 注意：在开发模式下，Vite 可能会把 style 注入到 head。
@@ -25,7 +28,7 @@ shadow.appendChild(appContainer);
 // 或者手动创建一个 style 标签把 tailwind.css 的内容塞进去。
 // 由于是脚手架，我们先挂载 Vue。
 
-const app = createApp(ContentApp);
-app.mount(appContainer);
+const app = createApp(ContentApp)
+app.mount(appContainer)
 
-console.log("FluentLens Content Script Injected");
+console.log('FluentLens Content Script Injected')
