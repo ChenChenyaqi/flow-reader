@@ -1,9 +1,0 @@
-@import "tailwindcss";
-
-@plugin 'tailwindcss-animate';
-
-/* FluentLens Content Styles */
-.fluent-lens-overlay {
-  position: fixed;
-  z-index: 999999;
-}
