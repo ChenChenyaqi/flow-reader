@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+/// <reference types="vitest/globals" />
 
 // Vue component type declaration
 declare module '*.vue' {

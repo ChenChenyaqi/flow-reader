@@ -1,2 +1,12 @@
 @import 'tailwindcss';
 @plugin 'tailwindcss-animate';
+
+@theme {
+  --color-primary: oklch(0.208 0.042 265.755); /* slate-900 */
+  --color-primary-foreground: oklch(0.985 0.001 247.858); /* slate-50 */
+  --color-accent: oklch(0.585 0.233 277.117); /* indigo-500 */
+  --color-accent-foreground: oklch(1 0 0); /* white */
+  --color-card: oklch(0.208 0.042 265.755); /* slate-900 */
+  --color-card-foreground: oklch(0.87 0.01 258.338); /* slate-200 */
+  --color-border: oklch(0.274 0.04 260.031); /* slate-800 */
+}
