@@ -3,14 +3,14 @@
     v-if="visible"
     class="fixed z-[99999] cursor-pointer transition-all duration-200 hover:scale-110 active:scale-95"
     :style="{
-      left: `${position.x - 12}px`,
-      top: `${position.y - 12}px`,
+      left: `${position.x + 12}px`,
+      top: `${position.y - 6}px`,
     }"
+    @click="handleClick"
   >
     <!-- Lens Icon -->
     <div
       class="w-6 h-6 bg-blue-500 bg-gradient-to-br from-accent to-purple-600 rounded-full flex items-center justify-center shadow-lg shadow-accent/30 ring-2 ring-white/20"
-      @click="handleClick"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   position: { x: number; y: number }
   visible: boolean
 }>()
@@ -50,12 +50,6 @@ const emit = defineEmits<{
 }>()
 
 const handleClick = () => {
-  console.log('@@')
   emit('click')
 }
 </script>
-
-<style scoped>
-/* No additional styles needed - using Tailwind classes */
-</style>
-

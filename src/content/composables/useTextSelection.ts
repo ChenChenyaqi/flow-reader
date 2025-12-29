@@ -1,4 +1,4 @@
-import { ref, onUnmounted, onMounted } from 'vue'
+import { ref, onUnmounted, onMounted, Ref } from 'vue'
 
 export interface TextSelection {
   text: string
@@ -6,26 +6,31 @@ export interface TextSelection {
   isEmpty: boolean
 }
 
-export function useTextSelection() {
+export function useTextSelection(cardVisible: Ref<boolean>) {
   const text = ref<string>('')
   const rect = ref<DOMRect | null>(null)
   const isEmpty = ref<boolean>(true)
 
   const updateSelection = () => {
-    const selection = document.getSelection()
+    setTimeout(() => {
+      if (cardVisible.value) {
+        return
+      }
+      const selection = document.getSelection()
 
-    if (!selection || selection.rangeCount === 0 || selection.toString().trim() === '') {
-      text.value = ''
-      rect.value = null
-      isEmpty.value = true
-      return
-    }
+      if (!selection || selection.rangeCount === 0 || selection.toString().trim() === '') {
+        text.value = ''
+        rect.value = null
+        isEmpty.value = true
+        return
+      }
 
-    text.value = selection.toString()
+      text.value = selection.toString()
 
-    const range = selection.getRangeAt(0)
-    rect.value = range.getBoundingClientRect()
-    isEmpty.value = false
+      const range = selection.getRangeAt(0)
+      rect.value = range.getBoundingClientRect()
+      isEmpty.value = false
+    }, 500)
   }
 
   onMounted(() => {

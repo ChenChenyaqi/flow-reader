@@ -27,7 +27,6 @@ import { useTextSelection } from './composables/useTextSelection'
 import { useLensState } from './composables/useLensState'
 
 // Setup hooks
-const { text: selectedText, rect: selectionRect, isEmpty } = useTextSelection()
 const {
   lensPosition,
   lensVisible,
@@ -40,6 +39,7 @@ const {
   hideIcon,
   updateCardPosition,
 } = useLensState()
+const { text: selectedText, rect: selectionRect, isEmpty } = useTextSelection(cardVisible)
 
 // Watch for text selection changes
 watch([selectedText, selectionRect, isEmpty], ([text, rect, empty]) => {
