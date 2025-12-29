@@ -21,5 +21,3 @@ shadow.appendChild(appContainer)
 // 挂载 LensOverlay 组件
 const app = createApp(LensOverlay)
 app.mount(appContainer)
-
-console.log('FluentLens Content Script Injected - Lens Overlay Active')
