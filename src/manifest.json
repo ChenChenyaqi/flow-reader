@@ -2,10 +2,6 @@
   "manifest_version": 3,
   "name": "FluentLens",
   "version": "1.0.0",
-  "action": {
-    "default_popup": "src/options/index.html"
-  },
-  "options_page": "src/options/index.html",
   "background": {
     "service_worker": "src/background/index.ts",
     "type": "module"

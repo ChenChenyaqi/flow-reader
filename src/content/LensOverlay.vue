@@ -9,7 +9,10 @@
       :show-card="showCard"
       :card-position="cardPosition"
       :selection-text="selectionText"
+      :has-config="hasConfig"
+      :trigger-simplify="triggerSimplify"
       @close="closeCard"
+      @config-saved="handleConfigSaved"
     />
   </div>
 </template>
@@ -21,19 +24,23 @@ import LensCard from './components/LensCard.vue'
 import { useSelection } from './composables/useSelection'
 import { usePosition } from './composables/usePosition'
 import { useClickOutside } from './composables/useClickOutside'
+import useControlConfigCard from './composables/useControlConfigCard'
 
 // --- Composables ---
 const { selectionText, clearSelection, handleMouseUp } = useSelection()
 const { iconPosition, cardPosition, setIconPosition, setCardPosition } = usePosition()
+const {
+  hasConfig,
+  loadConfig,
+} = useControlConfigCard()
 
 // --- UI State ---
 const showIcon = ref(false)
 const showCard = ref(false)
+const triggerSimplify = ref(0)
 
 // --- Event Handlers ---
 const onSelectionMouseUp = () => {
-  if (showCard.value) return // no handle selection when card visible
-
   handleMouseUp(data => {
     setIconPosition(data.rect)
     showIcon.value = true
@@ -46,8 +53,16 @@ useClickOutside('fluent-lens-host', () => {
 
 const handleIconClick = () => {
   showIcon.value = false
-  setCardPosition(iconPosition.value)
-  showCard.value = true
+
+  if (showCard.value) {
+    // Card already open: trigger re-analysis with new selection (don't update position)
+    triggerSimplify.value++
+  } else {
+    // Opening card for the first time: set position and show card
+    setCardPosition(iconPosition.value)
+    showCard.value = true
+    loadConfig()
+  }
 }
 
 const closeCard = () => {
@@ -55,9 +70,15 @@ const closeCard = () => {
   clearSelection()
 }
 
+const handleConfigSaved = () => {
+  // Reload config after saving
+  loadConfig()
+}
+
 // --- Lifecycle ---
 onMounted(() => {
   document.addEventListener('mouseup', onSelectionMouseUp)
+  loadConfig()
 })
 onUnmounted(() => {
   document.removeEventListener('mouseup', onSelectionMouseUp)

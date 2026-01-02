@@ -16,27 +16,17 @@
         top: `${iconPosition.y}px`,
       }"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+      <Search
+        :size="20"
         class="text-white"
-      >
-        <path d="M21 21l-4.35-4.35" />
-        <path d="M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0z" />
-        <path d="M11 8l1 2 2 1-2 1-1 2-1-2-2-1 2-1z" />
-      </svg>
+      />
     </button>
   </Transition>
 </template>
 
 <script setup lang="ts">
+import { Search } from 'lucide-vue-next'
+
 defineProps<{
   showIcon: boolean
   iconPosition: {
