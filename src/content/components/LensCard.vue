@@ -27,7 +27,7 @@
             v-if="showConfig"
             @click.stop="showConfig = false"
             class="text-slate-400 hover:text-slate-200 transition"
-            title="Back to Analysis"
+            :title="$t('common.cancel')"
           >
             <ChevronLeft :size="16" />
           </button>
@@ -36,7 +36,7 @@
             :class="showConfig ? 'bg-emerald-500' : 'bg-indigo-500 animate-pulse'"
           ></div>
           <span class="font-bold text-slate-200 text-sm">{{
-            showConfig ? 'Config Model' : 'FluentRead'
+            showConfig ? $t('config.llmConfig') : 'FluentRead'
           }}</span>
         </div>
         <div class="flex items-center gap-2">
@@ -45,7 +45,7 @@
             v-if="!showConfig"
             @click.stop="toggleCollapse"
             class="text-slate-400 hover:text-slate-200 transition"
-            :title="isCollapsed ? 'Expand' : 'Collapse'"
+            :title="isCollapsed ? $t('common.expand') : $t('common.collapse')"
           >
             <Minus
               v-if="!isCollapsed"
@@ -61,7 +61,7 @@
             v-if="!showConfig"
             @click.stop="handleOpenConfig"
             class="text-slate-400 hover:text-slate-200 transition"
-            title="Config Model"
+            :title="$t('config.llmConfig')"
           >
             <Settings :size="16" />
           </button>
@@ -69,6 +69,7 @@
           <button
             v-if="!showConfig"
             @click.stop="handleClose"
+            :title="$t('common.close')"
             class="text-slate-400 hover:text-white transition"
           >
             <X :size="16" />
@@ -87,9 +88,9 @@
               <AlertTriangle :size="16" />
             </div>
             <div>
-              <p class="text-amber-200 text-sm font-medium">No Model Config</p>
+              <p class="text-amber-200 text-sm font-medium">{{ $t('error.noApiKey') }}</p>
               <p class="text-amber-300/70 text-xs mt-1">
-                Please click the gear icon in the upper right corner to configure
+                {{ $t('error.invalidConfig') }}
               </p>
             </div>
           </div>
@@ -112,7 +113,7 @@
                 : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
             "
           >
-            LLM Config
+            {{ $t('config.llmConfig') }}
           </button>
           <button
             @click="configTab = ConfigTabType.VOCABULARY"
@@ -123,7 +124,18 @@
                 : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
             "
           >
-            Vocabulary
+            {{ $t('config.vocabulary') }}
+          </button>
+          <button
+            @click="configTab = ConfigTabType.OTHER"
+            class="flex-1 px-3 py-2 text-xs font-medium rounded-lg transition-colors"
+            :class="
+              configTab === ConfigTabType.OTHER
+                ? 'bg-indigo-600 text-white'
+                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+            "
+          >
+            {{ $t('config.other') }}
           </button>
         </div>
 
@@ -134,45 +146,45 @@
         >
           <div>
             <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
-              Provider
+              {{ $t('config.provider') }}
             </label>
             <select
               v-model="localConfig.provider"
               @change="handleProviderChange"
               class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-              <option value="zhipu">智谱 AI (Zhipu)</option>
-              <option value="openai">OpenAI</option>
-              <option value="custom">Custom</option>
+              <option value="zhipu">{{ $t('provider.zhipu') }}</option>
+              <option value="openai">{{ $t('provider.openai') }}</option>
+              <option value="custom">{{ $t('provider.custom') }}</option>
             </select>
           </div>
 
           <div>
             <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
-              API Key
+              {{ $t('config.apiKey') }}
             </label>
             <input
               v-model="localConfig.apiKey"
               type="password"
               class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Input API Key"
+              :placeholder="$t('config.apiKey')"
             />
           </div>
 
           <div>
             <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
-              Model Name
+              {{ $t('config.model') }}
             </label>
             <input
               v-model="localConfig.model"
               class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Input Model Name"
+              :placeholder="$t('config.model')"
             />
           </div>
 
           <div v-if="localConfig.provider === 'custom'">
             <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
-              API URL
+              {{ $t('config.apiUrl') }}
             </label>
             <input
               v-model="localConfig.apiUrl"
@@ -194,7 +206,7 @@
             class="text-emerald-400 text-sm bg-emerald-950/30 border border-emerald-900 rounded-lg p-3 flex items-center gap-2"
           >
             <Check :size="16" />
-            <span>Config saved successfully!</span>
+            <span>{{ $t('config.configSaved') }}</span>
           </div>
 
           <div class="flex gap-2 pt-2">
@@ -202,13 +214,13 @@
               @click="showConfig = false"
               class="flex-1 bg-slate-700 text-slate-200 py-2 rounded-lg hover:bg-slate-600 transition text-sm font-medium"
             >
-              Cancel
+              {{ $t('common.cancel') }}
             </button>
             <button
               @click="handleSaveConfig"
               class="flex-1 bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition text-sm font-medium"
             >
-              Save Config
+              {{ $t('config.saveConfig') }}
             </button>
           </div>
         </div>
@@ -220,6 +232,14 @@
         >
           <VocabularyLevelSelector />
         </div>
+
+        <!-- Other Config Panel -->
+        <div
+          v-else-if="configTab === ConfigTabType.OTHER"
+          class="px-5 pb-5"
+        >
+          <LanguageSwitcher />
+        </div>
       </div>
 
       <!-- Card Body (Analysis Content) -->
@@ -230,7 +250,7 @@
         <!-- Simplified Version -->
         <div class="mb-4">
           <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-            Simplified Version
+            {{ $t('card.simplified') }}
           </div>
 
           <!-- Streaming: Show spinner + real-time text (typewriter effect) -->
@@ -256,7 +276,7 @@
               class="animate-spin"
               :size="16"
             />
-            <span class="text-sm">Simplifying...</span>
+            <span class="text-sm">{{ $t('card.analyzing') }}</span>
           </div>
 
           <!-- Completed -->
@@ -271,14 +291,14 @@
             v-else
             class="text-slate-500 text-sm italic"
           >
-            Click below to simplify
+            {{ $t('card.analyzing') }}
           </div>
         </div>
 
         <!-- Original Text -->
         <div>
           <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-            Original Text
+            {{ $t('card.grammar') }}
           </div>
 
           <!-- Grammar analysis loading -->
@@ -290,7 +310,7 @@
               class="animate-spin"
               :size="14"
             />
-            <span>Analyzing grammar structure...</span>
+            <span>{{ $t('card.analyzing') }}</span>
           </div>
 
           <!-- Grammar legend -->
@@ -299,13 +319,19 @@
             class="flex items-center gap-4 mb-2 text-xs"
           >
             <div class="flex items-center gap-1">
-              <span class="border-b-2 border-blue-400 text-blue-400">Subject</span>
+              <span class="border-b-2 border-blue-400 text-blue-400">{{
+                $t('grammar.subject')
+              }}</span>
             </div>
             <div class="flex items-center gap-1">
-              <span class="border-b-2 border-amber-400 text-amber-400">Predicate</span>
+              <span class="border-b-2 border-amber-400 text-amber-400">{{
+                $t('grammar.predicate')
+              }}</span>
             </div>
             <div class="flex items-center gap-1">
-              <span class="border-b-2 border-violet-400 text-violet-400">Object</span>
+              <span class="border-b-2 border-violet-400 text-violet-400">{{
+                $t('grammar.object')
+              }}</span>
             </div>
           </div>
 
@@ -352,19 +378,19 @@
         v-if="!isCollapsed && !showConfig"
         class="px-4 py-3 bg-slate-950/50 border-t border-slate-800 text-xs text-slate-500 flex justify-between"
       >
-        <span>Length: {{ analyzingText.length }} chars</span>
+        <span> {{ $t('card.length', { count: analyzingText.length }) }}</span>
         <span
           v-if="hasConfig && !simplifyLoading"
           class="text-indigo-400 cursor-pointer hover:text-indigo-300"
           @click="handleSimplify"
         >
-          {{ simplifiedText ? '重新生成' : '重新生成' }}
+          {{ $t('card.regenerate') }}
         </span>
         <span
           v-else-if="hasConfig"
           class="text-slate-600"
         >
-          Analyzing...
+          {{ $t('card.analyzing') }}
         </span>
       </div>
     </div>
@@ -388,6 +414,7 @@ import GrammarHighlight from './GrammarHighlight.vue'
 import VocabularySection from './VocabularySection.vue'
 import VocabularyLevelSelector from './VocabularyLevelSelector.vue'
 import TranslationSection from './TranslationSection.vue'
+import LanguageSwitcher from './LanguageSwitcher.vue'
 import { storage } from '@/shared/services/storage'
 import { LLMProvider } from '@/shared/types/llm'
 import type { LLMConfig, SimplifyContext } from '@/shared/types/llm'
@@ -408,10 +435,11 @@ const emit = defineEmits<{
   (e: 'configSaved'): void
 }>()
 
-// Config Tab 类型
+// Config Tab Type
 enum ConfigTabType {
   LLM = 'LLM',
   VOCABULARY = 'VOCABULARY',
+  OTHER = 'OTHER',
 }
 
 const {

@@ -14,6 +14,7 @@ Built with Vue 3, TypeScript, and Vite, using CRXJS for Chrome extension develop
 - Grammar analysis with visual highlighting (subject/predicate/object)
 - Vocabulary learning with smart filtering based on user level
 - Support for multiple LLM providers (OpenAI, Zhipu AI, custom APIs)
+- Internationalization (i18n) with Chinese and English support
 
 ## Common Commands
 
@@ -87,15 +88,19 @@ const style = document.createElement("style");
 style.textContent = tailwindContent;
 shadow.appendChild(style);
 
-// Initialize vocabulary state BEFORE mounting Vue
+// 1. Initialize vocabulary state BEFORE mounting Vue
 await vocabularyState.init();
 
-// Mount Vue app inside Shadow DOM
+// 2. Initialize i18n (loads user preference or uses browser default)
+const i18n = await initializeI18n();
+
+// 3. Mount Vue app inside Shadow DOM (with i18n)
 const appContainer = document.createElement("div");
 appContainer.id = "app";
 shadow.appendChild(appContainer);
 
 const app = createApp(LensOverlay);
+app.use(i18n);
 app.mount(appContainer);
 ```
 
@@ -103,7 +108,8 @@ app.mount(appContainer);
 - All Tailwind styles must be inlined into Shadow DOM using `?inline` import
 - Regular `<style src="...">` in Vue components doesn't work in Shadow DOM context
 - Use `import css from "...?inline"` pattern for any CSS needed in content scripts
-- **Critical**: `vocabularyState.init()` must complete before creating the Vue app
+- **Critical**: `vocabularyState.init()` MUST complete before creating the Vue app
+- **Critical**: `initializeI18n()` must be called and the result passed to `app.use()` before mounting
 
 ### TypeScript Configuration
 
@@ -195,11 +201,11 @@ src/
 │   ├── components/
 │   │   ├── LensIcon.vue           # Floating icon (appears on text selection)
 │   │   ├── LensCard.vue           # Main analysis card (20KB, core UI)
-│   │   ├── ConfigCard.vue         # Configuration card (LLM + Vocabulary)
 │   │   ├── GrammarHighlight.vue   # Grammar highlighting display
-│   │   ├── TranslationSection.vue # Chinese translation section
+│   │   ├── TranslationSection.vue # Translation section
 │   │   ├── VocabularySection.vue  # Vocabulary list section
-│   │   └── VocabularyLevelSelector.vue  # Vocabulary level selector
+│   │   ├── VocabularyLevelSelector.vue  # Vocabulary level selector
+│   │   └── LanguageSwitcher.vue   # Language switcher (i18n)
 │   └── composables/
 │       ├── useLLM.ts              # LLM interaction logic (18KB)
 │       ├── useSelection.ts        # Text selection handling
@@ -208,10 +214,17 @@ src/
 │       └── useControlConfigCard.ts # Config card state management
 │
 ├── shared/                        # Shared code
+│   ├── i18n/                      # Internationalization
+│   │   ├── index.ts               # i18n instance and initialization
+│   │   ├── types.ts               # i18n types (SupportedLocale, LOCALE_OPTIONS)
+│   │   └── locales/
+│   │       ├── zh-CN.ts           # Chinese translations
+│   │       └── en.ts              # English translations
 │   ├── services/
 │   │   ├── storage.ts             # Chrome Storage wrapper (LLM config)
 │   │   ├── vocabularyState.ts     # Global vocabulary state management
-│   │   └── vocabularyStorage.ts   # Chrome Storage wrapper (vocabulary)
+│   │   ├── vocabularyStorage.ts   # Chrome Storage wrapper (vocabulary)
+│   │   └── languageStorage.ts     # Language preference storage
 │   └── types/
 │       ├── llm.ts                 # LLM-related types (Provider, Config, Messages)
 │       └── vocabulary.ts          # Vocabulary types (Level, Status, UserData)
@@ -256,15 +269,15 @@ src/
 - Displays simplified text (streaming)
 - Grammar highlighting with color-coded tags
 - Vocabulary list with "Know/Don't Know" buttons
-- Chinese translation section
+- Translation section
+- Configuration UI with tabs (LLM Config / Vocabulary)
+- Language switcher in Vocabulary tab
 - Draggable and collapsible
 
-**`src/content/components/ConfigCard.vue`**: Configuration UI
-- Tab switching (LLM Config / Vocabulary)
-- LLM provider selection
-- API key and model input
-- Custom API URL input (for custom provider)
-- Vocabulary level selector
+**`src/content/components/LanguageSwitcher.vue`**: Language switcher
+- Dropdown for language selection (Chinese/English)
+- Dynamically updates UI without page reload
+- Persists preference to chrome.storage.local
 
 ### Composables
 
@@ -307,7 +320,89 @@ src/
 - Key: `fluent-read-vocabulary`
 - Handles `UserVocabularyConfig` structure
 
+**`src/shared/services/languageStorage.ts`**: Language preference storage
+- Wrapper around `chrome.storage.local`
+- Key: `fluent-read-language`
+- Stores user's selected language (zh-CN or en)
+
+### i18n (Internationalization)
+
+**`src/shared/i18n/index.ts`**: i18n setup
+- `initializeI18n()`: Loads saved language or uses browser default
+- `changeLocale(locale)`: Dynamically changes language without reload
+- `getCurrentLocale()`: Returns current locale
+
+**Supported Languages**:
+- `zh-CN`: Simplified Chinese (default for Chinese browsers)
+- `en`: English (default for other browsers)
+
+**Usage in Components**:
+```vue
+<script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
+const { t, locale } = useI18n()
+
+// Get translation
+const label = computed(() => t('config.save'))
+
+// Get current locale
+const currentLang = computed(() => locale.value)
+</script>
+
+<template>
+  <!-- Use $t in template -->
+  <button>{{ $t('common.save') }}</button>
+  <span>{{ $t('card.analyzing') }}</span>
+</template>
+```
+
+**Translation Structure** (`src/shared/i18n/locales/`):
+```
+common:
+  save, cancel, close, loading, error, success, confirm
+
+config:
+  title, llmConfig, vocabulary, language, provider, apiKey, model, apiUrl, vocabularyLevel, saveConfig, configSaved
+
+vocabularyLevel:
+  LEVEL_500, LEVEL_1000, LEVEL_2000, LEVEL_3000, LEVEL_5000, LEVEL_8000
+
+provider:
+  zhipu, openai, custom
+
+card:
+  simplified, grammar, vocabulary, translation, know, dontKnow, noVocabulary, analyzing, error, subject, predicate, object
+
+error:
+  noApiKey, invalidConfig, networkError, rateLimit, unknownError
+
+grammar:
+  subject, predicate, object
+```
+
+**Adding New Translations**:
+1. Add the translation key to both `src/shared/i18n/locales/zh-CN.ts` and `src/shared/i18n/locales/en.ts`
+2. Use in template with `{{ $t('path.to.key') }}` or in script with `t('path.to.key')`
+3. For dynamic values, use interpolation: `{{ $t('message', { name: 'FluentRead' }) }}`
+
 ## Type Definitions
+
+### i18n Types (`src/shared/i18n/types.ts`)
+
+```typescript
+type SupportedLocale = 'zh-CN' | 'en'
+
+interface LanguageConfig {
+  locale: SupportedLocale
+  lastUpdated: number
+}
+
+const LOCALE_OPTIONS = [
+  { value: 'zh-CN', label: '简体中文', nativeName: '简体中文' },
+  { value: 'en', label: 'English', nativeName: 'English' }
+]
+```
 
 ### LLM Types (`src/shared/types/llm.ts`)
 
@@ -372,6 +467,8 @@ interface UserVocabularyConfig {
 5. **Path Aliases**: Use `@/` not `src/` for imports to match TypeScript config
 6. **Vocabulary State Initialization**: `vocabularyState.init()` MUST complete before mounting Vue app
 7. **Background Service for LLM**: Always make LLM requests from background service worker to avoid CORS
+8. **i18n in Script Section**: Use `useI18n()` composable to access `t()` function in `<script setup>`, not `$t()`
+9. **i18n Initialization**: `initializeI18n()` must be called and the result passed to `app.use()` before mounting Vue app
 
 ## Documentation
 

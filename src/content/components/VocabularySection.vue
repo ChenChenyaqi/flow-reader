@@ -1,14 +1,14 @@
 <template>
   <div class="mt-4">
     <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-      Difficult Words ({{ items.length }})
+      {{ $t('card.vocabulary') }} ({{ items.length }})
     </div>
 
     <div
       v-if="items.length === 0"
       class="text-slate-600 text-sm italic"
     >
-      No difficult words found
+      {{ $t('card.noVocabulary') }}
     </div>
 
     <div
@@ -33,7 +33,7 @@
           {{ item.chineseTranslation }}
         </p>
 
-        <!-- 认识/不认识按钮 -->
+        <!-- known and unknow button -->
         <div class="flex gap-2 mt-3">
           <button
             class="flex-1 px-3 py-1.5 text-xs font-medium rounded transition-colors"
@@ -44,7 +44,7 @@
             "
             @click="markAsKnown(item.word)"
           >
-            ✓ 认识
+            ✓ {{ $t('card.know') }}
           </button>
           <button
             class="flex-1 px-3 py-1.5 text-xs font-medium rounded transition-colors"
@@ -55,7 +55,7 @@
             "
             @click="markAsUnknown(item.word)"
           >
-            ✗ 不认识
+            ✗ {{ $t('card.dontKnow') }}
           </button>
         </div>
       </div>

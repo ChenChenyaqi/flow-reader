@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite'
 import manifest from './src/manifest.json'
 
 export default defineConfig({
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   plugins: [vue(), crx({ manifest }), tailwindcss()],
   server: {
     port: 5174,

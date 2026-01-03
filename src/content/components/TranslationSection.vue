@@ -1,6 +1,8 @@
 <template>
   <div class="mt-4">
-    <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Translation</div>
+    <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+      {{ $t('card.translation') }}
+    </div>
 
     <p
       v-if="translation"
