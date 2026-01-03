@@ -1,5 +1,5 @@
 <template>
-  <div class="fluent-lens-container text-base font-sans antialiased text-slate-800">
+  <div class="fluent-read-container text-base font-sans antialiased text-slate-800">
     <LensIcon
       :show-icon="showIcon"
       :icon-position="iconPosition"
@@ -29,10 +29,7 @@ import useControlConfigCard from './composables/useControlConfigCard'
 // --- Composables ---
 const { selectionText, clearSelection, handleMouseUp } = useSelection()
 const { iconPosition, cardPosition, setIconPosition, setCardPosition } = usePosition()
-const {
-  hasConfig,
-  loadConfig,
-} = useControlConfigCard()
+const { hasConfig, loadConfig } = useControlConfigCard()
 
 // --- UI State ---
 const showIcon = ref(false)
@@ -47,7 +44,7 @@ const onSelectionMouseUp = () => {
   })
 }
 
-useClickOutside('fluent-lens-host', () => {
+useClickOutside('fluent-read-host', () => {
   showIcon.value = false
 })
 

@@ -2,13 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FluentLens - My Knowledge Dashboard</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>FluentRead - My Knowledge Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
       body {
-        font-family: "Inter", sans-serif;
+        font-family: 'Inter', sans-serif;
         background-color: #0f172a;
         color: #e2e8f0;
       }
@@ -36,9 +39,7 @@
     >
       <div>
         <!-- Branding -->
-        <div
-          class="h-16 flex items-center px-6 border-b border-slate-800 gap-3"
-        >
+        <div class="h-16 flex items-center px-6 border-b border-slate-800 gap-3">
           <div
             class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg shadow-indigo-500/20"
           >
@@ -53,13 +54,20 @@
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <circle
+                cx="11"
+                cy="11"
+                r="8"
+              ></circle>
+              <line
+                x1="21"
+                y1="21"
+                x2="16.65"
+                y2="16.65"
+              ></line>
             </svg>
           </div>
-          <span class="text-xl font-bold tracking-tight text-white"
-            >FluentLens</span
-          >
+          <span class="text-xl font-bold tracking-tight text-white">FluentRead</span>
         </div>
 
         <!-- Nav Links -->
@@ -76,7 +84,14 @@
               stroke="currentColor"
               stroke-width="2"
             >
-              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <rect
+                x="2"
+                y="7"
+                width="20"
+                height="14"
+                rx="2"
+                ry="2"
+              ></rect>
               <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
             </svg>
             My Collection
@@ -93,12 +108,20 @@
               stroke="currentColor"
               stroke-width="2"
             >
-              <path
-                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-              ></path>
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
               <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <line
+                x1="16"
+                y1="13"
+                x2="8"
+                y2="13"
+              ></line>
+              <line
+                x1="16"
+                y1="17"
+                x2="8"
+                y2="17"
+              ></line>
               <polyline points="10 9 9 9 8 9"></polyline>
             </svg>
             Export / Import
@@ -115,7 +138,11 @@
               stroke="currentColor"
               stroke-width="2"
             >
-              <circle cx="12" cy="12" r="3"></circle>
+              <circle
+                cx="12"
+                cy="12"
+                r="3"
+              ></circle>
               <path
                 d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
               ></path>
@@ -142,17 +169,13 @@
       <!-- Top Stats Row (数据统计行) -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
         <!-- Stat 1: Total -->
-        <div
-          class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm"
-        >
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
           <div class="text-slate-400 text-sm font-medium mb-1">Total Cards</div>
           <div class="text-3xl font-bold text-white">482</div>
         </div>
 
         <!-- Stat 2: Daily -->
-        <div
-          class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm"
-        >
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
           <div class="text-slate-400 text-sm font-medium mb-1">Added Today</div>
           <div class="text-3xl font-bold text-emerald-400">+15</div>
         </div>
@@ -162,12 +185,8 @@
           class="hidden md:flex col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-5 flex-col justify-center"
         >
           <div class="flex justify-between items-end mb-2">
-            <span class="text-xs text-slate-400 font-medium"
-              >Activity Streak</span
-            >
-            <span class="text-xs text-indigo-400 font-bold"
-              >Current: 12 Days 🔥</span
-            >
+            <span class="text-xs text-slate-400 font-medium">Activity Streak</span>
+            <span class="text-xs text-indigo-400 font-bold">Current: 12 Days 🔥</span>
           </div>
           <!-- Heatmap Grid -->
           <div class="flex gap-1 opacity-80">
@@ -194,9 +213,7 @@
       </div>
 
       <!-- Filter Bar (筛选栏) -->
-      <div
-        class="flex flex-col md:flex-row items-center justify-between mb-6 gap-4"
-      >
+      <div class="flex flex-col md:flex-row items-center justify-between mb-6 gap-4">
         <h2 class="text-xl font-bold text-white">Recent Collections</h2>
         <div class="flex gap-2 w-full md:w-auto">
           <input
@@ -229,9 +246,7 @@
               >
               <span class="text-xs text-slate-500">2 hours ago</span>
             </div>
-            <div
-              class="opacity-0 group-hover:opacity-100 flex gap-2 transition-opacity"
-            >
+            <div class="opacity-0 group-hover:opacity-100 flex gap-2 transition-opacity">
               <button
                 title="Delete"
                 class="text-slate-500 hover:text-red-400 p-1"
@@ -257,9 +272,7 @@
           <div class="flex flex-col md:flex-row gap-4 md:gap-8 md:items-start">
             <div class="min-w-[150px]">
               <h3 class="text-2xl font-bold text-white mb-1">Reconciliation</h3>
-              <div class="text-sm text-slate-500 font-mono italic">
-                /ˌrek.ənˌsɪl.iˈeɪ.ʃən/
-              </div>
+              <div class="text-sm text-slate-500 font-mono italic">/ˌrek.ənˌsɪl.iˈeɪ.ʃən/</div>
               <span
                 class="inline-block mt-2 text-[10px] uppercase tracking-wider font-semibold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded"
                 >Noun</span
@@ -268,11 +281,9 @@
 
             <div class="flex-1 pt-1 border-l-2 border-slate-800 pl-4 md:pl-6">
               <div class="text-slate-300 mb-3">
-                <span class="text-indigo-400 font-bold text-xs uppercase mr-2"
-                  >Tech Meaning</span
-                >
-                The process through which React updates the DOM by comparing the
-                new element tree with the previous one.
+                <span class="text-indigo-400 font-bold text-xs uppercase mr-2">Tech Meaning</span>
+                The process through which React updates the DOM by comparing the new element tree
+                with the previous one.
               </div>
 
               <!-- Context Sentence -->
@@ -280,8 +291,8 @@
                 class="bg-slate-950 p-3 rounded-lg border border-slate-800/50 text-sm text-slate-400"
               >
                 "React uses a diffing algorithm for efficient
-                <span class="text-indigo-400 font-bold">reconciliation</span> of
-                the component tree."
+                <span class="text-indigo-400 font-bold">reconciliation</span> of the component
+                tree."
               </div>
             </div>
           </div>
@@ -299,9 +310,7 @@
               >
               <span class="text-xs text-slate-500">Yesterday</span>
             </div>
-            <div
-              class="opacity-0 group-hover:opacity-100 flex gap-2 transition-opacity"
-            >
+            <div class="opacity-0 group-hover:opacity-100 flex gap-2 transition-opacity">
               <button class="text-slate-500 hover:text-red-400 p-1">
                 <svg
                   width="16"
@@ -323,9 +332,7 @@
           <div class="flex flex-col md:flex-row gap-4 md:gap-8 md:items-start">
             <div class="min-w-[150px]">
               <h3 class="text-2xl font-bold text-white mb-1">Plummet</h3>
-              <div class="text-sm text-slate-500 font-mono italic">
-                /ˈplʌm.ɪt/
-              </div>
+              <div class="text-sm text-slate-500 font-mono italic">/ˈplʌm.ɪt/</div>
               <span
                 class="inline-block mt-2 text-[10px] uppercase tracking-wider font-semibold text-red-400 bg-red-400/10 px-2 py-0.5 rounded"
                 >Verb</span
@@ -333,15 +340,13 @@
             </div>
 
             <div class="flex-1 pt-1 border-l-2 border-slate-800 pl-4 md:pl-6">
-              <div class="text-slate-300 mb-3">
-                To fall very quickly and suddenly.
-              </div>
+              <div class="text-slate-300 mb-3">To fall very quickly and suddenly.</div>
               <div
                 class="bg-slate-950 p-3 rounded-lg border border-slate-800/50 text-sm text-slate-400"
               >
                 "Tech stocks
-                <span class="text-red-400 font-bold">plummeted</span> after the
-                release of the quarterly earnings report."
+                <span class="text-red-400 font-bold">plummeted</span> after the release of the
+                quarterly earnings report."
               </div>
             </div>
           </div>
@@ -359,9 +364,7 @@
               >
               <span class="text-xs text-slate-500">2 days ago</span>
             </div>
-            <div
-              class="opacity-0 group-hover:opacity-100 flex gap-2 transition-opacity"
-            >
+            <div class="opacity-0 group-hover:opacity-100 flex gap-2 transition-opacity">
               <button class="text-slate-500 hover:text-red-400 p-1">
                 <svg
                   width="16"
@@ -392,16 +395,14 @@
 
             <div class="flex-1 pt-1 border-l-2 border-slate-800 pl-4 md:pl-6">
               <div class="text-slate-300 mb-3">
-                Standard code sections that have to be included in many places
-                with little or no alteration.
+                Standard code sections that have to be included in many places with little or no
+                alteration.
               </div>
               <div
                 class="bg-slate-950 p-3 rounded-lg border border-slate-800/50 text-sm text-slate-400"
               >
                 "Using this library reduces the amount of
-                <span class="text-white font-bold border-b border-white"
-                  >boilerplate code</span
-                >
+                <span class="text-white font-bold border-b border-white">boilerplate code</span>
                 you need to write."
               </div>
             </div>

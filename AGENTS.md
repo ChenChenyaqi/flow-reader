@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This file provides guidance for agentic coding assistants working on FluentLens.
+This file provides guidance for agentic coding assistants working on FluentRead.
 
 ## Build & Quality Commands
 

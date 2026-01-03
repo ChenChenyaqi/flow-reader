@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-FluentLens is a Chrome extension that turns passive reading into active fluency for English learning. It's built with Vue 3, TypeScript, and Vite, using CRXJS for Chrome extension development.
+FluentRead is a Chrome extension that turns passive reading into active fluency for English learning. It's built with Vue 3, TypeScript, and Vite, using CRXJS for Chrome extension development.
 
 ## Common Commands
 
@@ -50,7 +50,7 @@ The content script creates an isolated Shadow DOM to prevent CSS conflicts with 
 ```typescript
 // From src/content/index.ts
 const host = document.createElement("div");
-host.id = "fluent-lens-host";
+host.id = "fluent-read-host";
 document.body.appendChild(host);
 
 const shadow = host.attachShadow({ mode: "open" });

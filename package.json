@@ -1,7 +1,7 @@
 {
-  "name": "fluent-lens",
+  "name": "fluent-read",
   "version": "1.0.0",
-  "description": "Turn Passive Reading into Active Fluency - A Chrome extension for English learning",
+  "description": "FluentRead - 让英文阅读像水流一样顺畅 | A Chrome extension for seamless English reading",
   "type": "module",
   "scripts": {
     "dev": "vite",

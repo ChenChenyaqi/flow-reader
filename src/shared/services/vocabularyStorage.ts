@@ -6,7 +6,7 @@ import type {
 import { VocabularyLevel as VocabLevel } from '@/shared/types/vocabulary'
 import { WordMasteryStatus as MasteryStatus } from '@/shared/types/vocabulary'
 
-const STORAGE_KEY = 'fluent-lens-vocabulary'
+const STORAGE_KEY = 'fluent-read-vocabulary'
 
 const DEFAULT_CONFIG: UserVocabularyConfig = {
   level: VocabLevel.LEVEL_2000,
@@ -21,8 +21,8 @@ class VocabularyStorageService {
    * 加载用户词汇配置
    */
   async loadConfig(): Promise<UserVocabularyConfig> {
-    return new Promise((resolve) => {
-      chrome.storage.local.get([STORAGE_KEY], (result) => {
+    return new Promise(resolve => {
+      chrome.storage.local.get([STORAGE_KEY], result => {
         const stored = result[STORAGE_KEY] as UserVocabularyConfig | undefined
         resolve(stored || { ...DEFAULT_CONFIG })
       })
@@ -33,7 +33,7 @@ class VocabularyStorageService {
    * 保存用户词汇配置
    */
   async saveConfig(config: UserVocabularyConfig): Promise<void> {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       const updated = {
         ...config,
         lastUpdated: Date.now(),
@@ -95,13 +95,13 @@ class VocabularyStorageService {
    */
   async markWords(words: string[], status: WordMasteryStatus): Promise<void> {
     const config = await this.loadConfig()
-    const normalizedWords = words.map((w) => w.toLowerCase().trim()).filter(Boolean)
+    const normalizedWords = words.map(w => w.toLowerCase().trim()).filter(Boolean)
 
     // 从所有列表中移除
     const removeSet = new Set(normalizedWords)
-    config.knownWords = config.knownWords.filter((w) => !removeSet.has(w))
-    config.unknownWords = config.unknownWords.filter((w) => !removeSet.has(w))
-    config.ignoredWords = config.ignoredWords.filter((w) => !removeSet.has(w))
+    config.knownWords = config.knownWords.filter(w => !removeSet.has(w))
+    config.unknownWords = config.unknownWords.filter(w => !removeSet.has(w))
+    config.ignoredWords = config.ignoredWords.filter(w => !removeSet.has(w))
 
     // 添加到对应列表
     switch (status) {
@@ -160,7 +160,7 @@ class VocabularyStorageService {
    * 清除所有数据
    */
   async clearAll(): Promise<void> {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       chrome.storage.local.remove([STORAGE_KEY], () => {
         resolve()
       })

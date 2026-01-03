@@ -36,7 +36,7 @@
             :class="showConfig ? 'bg-emerald-500' : 'bg-indigo-500 animate-pulse'"
           ></div>
           <span class="font-bold text-slate-200 text-sm">{{
-            showConfig ? 'Config Model' : 'FluentLens'
+            showConfig ? 'Config Model' : 'FluentRead'
           }}</span>
         </div>
         <div class="flex items-center gap-2">

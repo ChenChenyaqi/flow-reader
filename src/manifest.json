@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "FluentLens",
+  "name": "FluentRead",
   "version": "1.0.0",
   "background": {
     "service_worker": "src/background/index.ts",

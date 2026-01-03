@@ -5,7 +5,7 @@ import { vocabularyState } from '@/shared/services/vocabularyState'
 
 // 创建宿主元素
 const host = document.createElement('div')
-host.id = 'fluent-lens-host'
+host.id = 'fluent-read-host'
 document.body.appendChild(host)
 
 // 创建 Shadow DOM
@@ -28,9 +28,9 @@ async function initializeApp() {
   const app = createApp(LensOverlay)
   app.mount(appContainer)
 
-  console.log('[FluentLens] Content script initialized')
+  console.log('[FluentRead] Content script initialized')
 }
 
-initializeApp().catch((err) => {
-  console.error('[FluentLens] Initialization failed:', err)
+initializeApp().catch(err => {
+  console.error('[FluentRead] Initialization failed:', err)
 })

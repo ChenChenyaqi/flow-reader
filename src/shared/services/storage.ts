@@ -1,7 +1,7 @@
 import type { LLMConfig } from '@/shared/types/llm'
 
 class StorageService {
-  private readonly LLM_CONFIG_KEY = 'fluent_lens_llm_config'
+  private readonly LLM_CONFIG_KEY = 'fluent_read_llm_config'
 
   async getLLMConfig(): Promise<LLMConfig | null> {
     const result = await chrome.storage.local.get(this.LLM_CONFIG_KEY)
