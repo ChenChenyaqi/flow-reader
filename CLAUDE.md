@@ -219,7 +219,7 @@ src/
 │   │   ├── types.ts               # i18n types (SupportedLocale, LOCALE_OPTIONS)
 │   │   └── locales/
 │   │       ├── zh-CN.ts           # Chinese translations
-│   │       └── en.ts              # English translations
+│   │       └── en-US.ts              # English translations
 │   ├── services/
 │   │   ├── storage.ts             # Chrome Storage wrapper (LLM config)
 │   │   ├── vocabularyState.ts     # Global vocabulary state management
@@ -323,7 +323,7 @@ src/
 **`src/shared/services/languageStorage.ts`**: Language preference storage
 - Wrapper around `chrome.storage.local`
 - Key: `fluent-read-language`
-- Stores user's selected language (zh-CN or en)
+- Stores user's selected language (zh-CN or en-US)
 
 ### i18n (Internationalization)
 
@@ -334,7 +334,7 @@ src/
 
 **Supported Languages**:
 - `zh-CN`: Simplified Chinese (default for Chinese browsers)
-- `en`: English (default for other browsers)
+- `en-US`: English (default for other browsers)
 
 **Usage in Components**:
 ```vue
@@ -382,7 +382,7 @@ grammar:
 ```
 
 **Adding New Translations**:
-1. Add the translation key to both `src/shared/i18n/locales/zh-CN.ts` and `src/shared/i18n/locales/en.ts`
+1. Add the translation key to both `src/shared/i18n/locales/zh-CN.ts` and `src/shared/i18n/locales/en-US.ts`
 2. Use in template with `{{ $t('path.to.key') }}` or in script with `t('path.to.key')`
 3. For dynamic values, use interpolation: `{{ $t('message', { name: 'FluentRead' }) }}`
 
@@ -391,7 +391,7 @@ grammar:
 ### i18n Types (`src/shared/i18n/types.ts`)
 
 ```typescript
-type SupportedLocale = 'zh-CN' | 'en'
+type SupportedLocale = 'zh-CN' | 'en-US'
 
 interface LanguageConfig {
   locale: SupportedLocale
@@ -400,7 +400,7 @@ interface LanguageConfig {
 
 const LOCALE_OPTIONS = [
   { value: 'zh-CN', label: '简体中文', nativeName: '简体中文' },
-  { value: 'en', label: 'English', nativeName: 'English' }
+  { value: 'en-US', label: 'English', nativeName: 'English' }
 ]
 ```
 

@@ -1,4 +1,4 @@
-export type SupportedLocale = 'zh-CN' | 'en'
+export type SupportedLocale = 'zh-CN' | 'en-US'
 
 export interface LanguageConfig {
   locale: SupportedLocale
@@ -11,15 +11,15 @@ export const LOCALE_OPTIONS: Array<{
   nativeName: string
 }> = [
   { value: 'zh-CN', label: '简体中文', nativeName: '简体中文' },
-  { value: 'en', label: 'English', nativeName: 'English' },
+  { value: 'en-US', label: 'English', nativeName: 'English' },
 ]
 
 /**
  * Get the default locale based on browser language
- * @returns The default locale (zh-CN or en)
+ * @returns The default locale (zh-CN or en-US)
  */
 export function getDefaultLocale(): SupportedLocale {
-  const browserLang = navigator.language || 'en'
+  const browserLang = navigator.language || 'en-US'
 
   // Check if browser language is Chinese
   if (browserLang.startsWith('zh')) {
@@ -27,7 +27,7 @@ export function getDefaultLocale(): SupportedLocale {
   }
 
   // Default to English for other languages
-  return 'en'
+  return 'en-US'
 }
 
 /**
@@ -36,5 +36,5 @@ export function getDefaultLocale(): SupportedLocale {
  * @returns True if the locale is supported
  */
 export function isSupportedLocale(locale: string): locale is SupportedLocale {
-  return locale === 'zh-CN' || locale === 'en'
+  return locale === 'zh-CN' || locale === 'en-US'
 }

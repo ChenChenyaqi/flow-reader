@@ -1,6 +1,6 @@
 import { createI18n } from 'vue-i18n'
 import zhCN from './locales/zh-CN'
-import en from './locales/en'
+import enUS from './locales/en-US'
 import type { SupportedLocale } from './types'
 import { languageStorage } from '@/shared/services/languageStorage'
 
@@ -8,12 +8,12 @@ import { languageStorage } from '@/shared/services/languageStorage'
 const i18n = createI18n({
   legacy: false, // Vue 3 Composition API mode
   locale: 'zh-CN', // Will be updated after loading from storage
-  fallbackLocale: 'en',
+  fallbackLocale: 'en-US',
   messages: {
     'zh-CN': zhCN,
-    en
+    'en-US': enUS,
   },
-  globalInjection: true // Global injection of $t
+  globalInjection: true, // Global injection of $t
 })
 
 /**
@@ -33,7 +33,7 @@ export async function initializeI18n() {
  * Get the default locale based on browser language
  */
 function getDefaultLocale(): SupportedLocale {
-  const browserLang = navigator.language || 'en'
+  const browserLang = navigator.language || 'en-US'
 
   // Check if browser language is Chinese
   if (browserLang.startsWith('zh')) {
@@ -41,7 +41,7 @@ function getDefaultLocale(): SupportedLocale {
   }
 
   // Default to English for other languages
-  return 'en'
+  return 'en-US'
 }
 
 /**

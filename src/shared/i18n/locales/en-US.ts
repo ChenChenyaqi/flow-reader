@@ -40,8 +40,13 @@ export default {
 
   // LLM Providers
   provider: {
-    zhipu: 'Zhipu AI',
+    zhipu: 'Zhipu AI (Recommended)',
+    doubao: 'Doubao',
+    qianwen: 'Qianwen',
+    deepseek: 'DeepSeek',
+    moonshot: 'Moonshot (Kimi)',
     openai: 'OpenAI',
+    groq: 'Groq',
     custom: 'Custom',
   },
 
@@ -61,6 +66,7 @@ export default {
     predicate: 'Predicate',
     object: 'Object',
     length: 'Length: {count} chars',
+    confidence: 'Confidence',
   },
 
   // Error Messages

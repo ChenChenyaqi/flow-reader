@@ -5,18 +5,54 @@ import type {
   StreamCallback,
   GrammarAnalysis,
   LLMMessage,
+  Confidence,
 } from '@/shared/types/llm'
 
 class LLMApiService {
+  /**
+   * Calculate confidence level from score
+   */
+  private calculateConfidence(score: number): Confidence | undefined {
+    if (typeof score !== 'number' || score < 0 || score > 100) {
+      return undefined
+    }
+
+    let level: 'high' | 'medium' | 'low'
+    if (score >= 80) {
+      level = 'high'
+    } else if (score >= 60) {
+      level = 'medium'
+    } else {
+      level = 'low'
+    }
+
+    return { score, level }
+  }
+
   /**
    * Get base URL for provider
    */
   private getBaseURL(config: LLMConfig): string {
     switch (config.provider) {
-      case 'openai':
-        return 'https://api.openai.com/v1'
+      // Domestic LLMs
       case 'zhipu':
         return 'https://open.bigmodel.cn/api/paas/v4'
+      case 'doubao':
+        return 'https://ark.cn-beijing.volces.com/api/v3'
+      case 'qianwen':
+        return 'https://dashscope.aliyuncs.com/compatible-mode/v1'
+      case 'deepseek':
+        return 'https://api.deepseek.com'
+      case 'moonshot':
+        return 'https://api.moonshot.cn/v1'
+
+      // International LLMs
+      case 'openai':
+        return 'https://api.openai.com/v1'
+      case 'groq':
+        return 'https://api.groq.com/openai/v1'
+
+      // Custom
       case 'custom':
         return config.apiUrl!
       default:
@@ -140,7 +176,15 @@ class LLMApiService {
 
     const content =
       response.choices[0]?.message?.content || '{"markedText":"","vocabulary":[],"translation":""}'
-    return JSON.parse(content) as GrammarAnalysis
+    const parsed = JSON.parse(content)
+
+    // Process confidence field
+    const confidence = this.calculateConfidence(parsed.confidence)
+
+    return {
+      ...parsed,
+      confidence,
+    } as GrammarAnalysis
   }
 }
 

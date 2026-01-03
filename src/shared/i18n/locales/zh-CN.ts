@@ -40,14 +40,19 @@ export default {
 
   // LLM 服务商
   provider: {
-    zhipu: '智谱 AI',
+    zhipu: '智谱 AI（推荐）',
+    doubao: '豆包',
+    qianwen: '通义千问',
+    deepseek: 'DeepSeek',
+    moonshot: 'Moonshot (Kimi)',
     openai: 'OpenAI',
+    groq: 'Groq',
     custom: '自定义',
   },
 
   // 分析卡片
   card: {
-    simplified: '简化文本',
+    simplified: '简化句子',
     grammar: '语法分析',
     vocabulary: '生词',
     translation: '中文翻译',
@@ -61,6 +66,7 @@ export default {
     predicate: '谓语',
     object: '宾语',
     length: '长度: {count} 字符',
+    confidence: '置信度',
   },
 
   // 错误消息

@@ -135,15 +135,24 @@ Return EXACTLY this JSON structure:
       "chineseTranslation": "仓库"
     }
   ],
-  "translation": "这个仓库很旧。"
+  "translation": "这个仓库很旧。",
+  "confidence": 90
 }
 
 **If no difficult words:**
 {
   "markedText": "The <subject>cat</subject> <predicate>is</predicate> <object>cute</object>.",
   "vocabulary": [],
-  "translation": "这只猫很可爱。"
+  "translation": "这只猫很可爱。",
+  "confidence": 95
 }
+
+## Confidence Rating
+Rate your analysis accuracy (0-100):
+- 90-100: Clear grammar structure, unambiguous
+- 70-89: Generally correct but some complexity
+- 50-69: Uncertain (complex sentence, multiple interpretations)
+- Below 50: Low confidence (unusual structure, missing context)
 
 Text: {text}`
 
@@ -153,7 +162,7 @@ const SIMPLE_PROMPT = `Analyze this text. No vocabulary explanation needed - ret
 Mark grammar with <subject>, <predicate>, <object> tags.
 Translate to Chinese (keep technical terms in English).
 
-Return JSON: {"markedText": "...", "vocabulary": [], "translation": "..."}
+Return JSON: {"markedText": "...", "vocabulary": [], "translation": "...", "confidence": 90}
 
 Text: {text}`
 

@@ -154,8 +154,13 @@
               class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
               <option value="zhipu">{{ $t('provider.zhipu') }}</option>
+              <!-- <option value="doubao">{{ $t('provider.doubao') }}</option> -->
+              <option value="qianwen">{{ $t('provider.qianwen') }}</option>
+              <option value="deepseek">{{ $t('provider.deepseek') }}</option>
+              <!-- <option value="moonshot">{{ $t('provider.moonshot') }}</option> -->
               <option value="openai">{{ $t('provider.openai') }}</option>
               <option value="custom">{{ $t('provider.custom') }}</option>
+              <!-- <option value="groq">{{ $t('provider.groq') }}</option> -->
             </select>
           </div>
 
@@ -244,7 +249,7 @@
 
       <!-- Card Body (Analysis Content) -->
       <div
-        v-else-if="!isCollapsed && !showConfig"
+        v-else-if="!isCollapsed && !showConfig && hasConfig"
         class="p-5 max-h-[60vh] overflow-y-auto"
       >
         <!-- Simplified Version -->
@@ -297,8 +302,22 @@
 
         <!-- Original Text -->
         <div>
-          <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-            {{ $t('card.grammar') }}
+          <div class="flex items-center justify-between mb-2">
+            <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">
+              {{ $t('card.grammar') }}
+            </div>
+            <!-- Confidence badge -->
+            <div
+              v-if="grammarAnalysis?.confidence"
+              class="text-xs px-2 py-0.5 rounded font-medium"
+              :class="{
+                'bg-emerald-900/50 text-emerald-400': grammarAnalysis.confidence.level === 'high',
+                'bg-amber-900/50 text-amber-400': grammarAnalysis.confidence.level === 'medium',
+                'bg-red-900/50 text-red-400': grammarAnalysis.confidence.level === 'low',
+              }"
+            >
+              {{ `${$t('card.confidence')} ${grammarAnalysis.confidence.score}` }}%
+            </div>
           </div>
 
           <!-- Grammar analysis loading -->
@@ -456,14 +475,17 @@ const {
 // Config state
 const showConfig = ref(false)
 const configTab = ref<ConfigTabType>(ConfigTabType.LLM)
-const modelConfig = ref<LLMConfig>({
-  provider: LLMProvider.ZHIPU,
+
+// Multi-config storage
+const allConfigs = ref<Partial<Record<LLMProvider, LLMConfig>>>({})
+const currentProvider = ref<LLMProvider>(LLMProvider.ZHIPU)
+
+// Local config for editing (bound to form)
+const localConfig = ref<LLMConfig>({
+  provider: currentProvider.value,
   apiKey: '',
   model: '',
 })
-
-// Local config for editing
-const localConfig = ref<LLMConfig>({ ...modelConfig.value })
 const configError = ref('')
 const saveSuccess = ref(false)
 
@@ -472,11 +494,20 @@ watch(
   () => props.showCard,
   async show => {
     if (show) {
-      const config = await storage.getLLMConfig()
-      if (config) {
-        modelConfig.value = config
-        localConfig.value = { ...config }
-      }
+      const multiConfig = await storage.getMultiLLMConfig()
+      allConfigs.value = multiConfig.configs
+      currentProvider.value = multiConfig.currentProvider
+
+      // Load current provider's config or create empty one
+      const savedConfig = allConfigs.value[currentProvider.value]
+      localConfig.value = savedConfig
+        ? { ...savedConfig }
+        : {
+            provider: currentProvider.value,
+            apiKey: '',
+            model: '',
+            apiUrl: '',
+          }
     }
   },
   { immediate: true }
@@ -662,25 +693,52 @@ onUnmounted(() => {
 })
 
 /**
- * Handle open config - switch to config mode
+ * Handle open config - reset to current provider's config
  */
-function handleOpenConfig() {
+async function handleOpenConfig() {
+  // Reload multi-config to get current state
+  const multiConfig = await storage.getMultiLLMConfig()
+  allConfigs.value = multiConfig.configs
+  currentProvider.value = multiConfig.currentProvider
+
+  // Reset localConfig to current provider's config
+  const savedConfig = allConfigs.value[currentProvider.value]
+  localConfig.value = savedConfig
+    ? { ...savedConfig }
+    : {
+        provider: currentProvider.value,
+        apiKey: '',
+        model: '',
+        apiUrl: '',
+      }
+
+  // Clear errors and success messages
+  configError.value = ''
+  saveSuccess.value = false
+
   showConfig.value = true
 }
 
 /**
- * Handle provider change - reset fields when provider changes
+ * Handle provider change - load saved config or clear fields
  */
 function handleProviderChange() {
-  if (localConfig.value.provider !== modelConfig.value.provider) {
-    // Provider changed - clear fields
-    localConfig.value.apiKey = ''
-    localConfig.value.apiUrl = ''
-    localConfig.value.model = ''
+  const newProvider = localConfig.value.provider
+  const savedConfig = allConfigs.value[newProvider]
+
+  if (savedConfig) {
+    // Has saved config, load it
+    localConfig.value = { ...savedConfig }
   } else {
-    // Reverted to original - restore config
-    localConfig.value = { ...modelConfig.value }
+    // No saved config, clear fields (keep provider)
+    localConfig.value = {
+      provider: newProvider,
+      apiKey: '',
+      model: '',
+      apiUrl: '',
+    }
   }
+
   configError.value = ''
   saveSuccess.value = false
 }
@@ -708,10 +766,16 @@ async function handleSaveConfig() {
     return
   }
 
-  // Save to storage
+  // Save to multi-config storage
   try {
+    const provider = localConfig.value.provider
+
+    // Update allConfigs and set as current provider
+    allConfigs.value[provider] = { ...localConfig.value }
+    currentProvider.value = provider
+
+    // Save to storage
     await storage.setLLMConfig({ ...localConfig.value })
-    modelConfig.value = { ...localConfig.value }
     saveSuccess.value = true
 
     // Notify parent and exit config mode after a short delay

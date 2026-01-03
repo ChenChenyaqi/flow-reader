@@ -1,6 +1,16 @@
 export enum LLMProvider {
-  ZHIPU = 'zhipu',
-  OPENAI = 'openai',
+  // Domestic LLMs (OpenAI-compatible)
+  ZHIPU = 'zhipu',      // 智谱 AI
+  DOUBAO = 'doubao',    // 豆包 (字节跳动)
+  QIANWEN = 'qianwen',  // 通义千问 (阿里云)
+  DEEPSEEK = 'deepseek', // DeepSeek
+  MOONSHOT = 'moonshot', // Moonshot AI (Kimi)
+
+  // International LLMs
+  OPENAI = 'openai',    // OpenAI
+  GROQ = 'groq',        // Groq
+
+  // Custom
   CUSTOM = 'custom',
 }
 
@@ -11,6 +21,12 @@ export interface LLMConfig {
   model: string
   maxTokens?: number
   temperature?: number
+}
+
+// Multi-config storage format
+export interface MultiLLMConfig {
+  currentProvider: LLMProvider
+  configs: Partial<Record<LLMProvider, LLMConfig>>
 }
 
 export interface LLMMessage {
@@ -69,10 +85,17 @@ export interface VocabularyItem {
   chineseTranslation: string
 }
 
+// Confidence rating
+export interface Confidence {
+  score: number // 0-100
+  level: 'high' | 'medium' | 'low'
+}
+
 export interface GrammarAnalysis {
   markedText: string // Text with <role>...</role> markers
   vocabulary: VocabularyItem[] // Difficult words
   translation: string // Full translation
+  confidence?: Confidence // Analysis confidence
 }
 
 export interface GrammarAnalysisRequestMessage {
