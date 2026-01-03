@@ -30,3 +30,6 @@ dist-ssr
 
 *.crx
 *.pem
+
+# Build artifacts
+*.zip

@@ -10,7 +10,8 @@
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
-    "test": "vitest"
+    "test": "vitest",
+    "generate-icons": "node scripts/generate-icons.mjs"
   },
   "dependencies": {
     "lucide-vue-next": "^0.562.0",
@@ -27,6 +28,7 @@
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.6.0",
     "@vue/tsconfig": "^0.8.1",
+    "adm-zip": "^0.5.16",
     "autoprefixer": "^10.4.23",
     "chrome-types": "^0.1.403",
     "eslint": "^9.31.0",
@@ -35,6 +37,7 @@
     "less": "^4.5.1",
     "postcss": "^8.5.6",
     "prettier": "^3.7.4",
+    "sharp": "^0.33.5",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.18",
     "tailwindcss-animate": "^1.0.7",
