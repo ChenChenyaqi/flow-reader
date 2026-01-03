@@ -27,6 +27,34 @@ function copyIcons() {
           console.log(`✅ Copied ${icon} to dist/`)
         }
       })
+
+      // Copy _locales directory
+      const copyLocales = (srcDir: string, destDir: string) => {
+        if (!fs.existsSync(srcDir)) return
+
+        const entries = fs.readdirSync(srcDir, { withFileTypes: true })
+
+        if (!fs.existsSync(destDir)) {
+          fs.mkdirSync(destDir, { recursive: true })
+        }
+
+        for (const entry of entries) {
+          const srcPath = path.join(srcDir, entry.name)
+          const destPath = path.join(destDir, entry.name)
+
+          if (entry.isDirectory()) {
+            copyLocales(srcPath, destPath)
+          } else {
+            fs.copyFileSync(srcPath, destPath)
+          }
+        }
+      }
+
+      const localesSrc = path.join(publicDir, '_locales')
+      const localesDest = path.join(distDir, '_locales')
+
+      copyLocales(localesSrc, localesDest)
+      console.log(`✅ Copied _locales/ to dist/`)
     },
   }
 }
