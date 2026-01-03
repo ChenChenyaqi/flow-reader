@@ -10,6 +10,7 @@ import type {
   GrammarAnalysisResponseMessage,
   CancelLLMRequestMessage,
 } from '@/shared/types/llm'
+import { vocabularyState } from '@/shared/services/vocabularyState'
 
 // Chrome runtime types
 declare const chrome: {
@@ -74,67 +75,207 @@ function buildSystemPrompt(context: SimplifyContext): string {
     .replace('{pageDescription || \'Not provided\'}', context.pageDescription || 'Not provided')
 }
 
-const GRAMMAR_PROMPT = `Analyze the following English text comprehensively.
+const GRAMMAR_PROMPT = `You are an expert English teacher. Analyze the following text.
 
-## Context Information
-- Page URL: {pageUrl || 'Not provided'}
-- Page Title: {pageTitle || 'Not provided'}
-- Page Description: {pageDescription || 'Not provided'}
+## CRITICAL RULE - MUST FOLLOW
+**ONLY select words from "Available Words to Explain" list. DO NOT select any other words.**
+
+If "Available Words to Explain" is empty or contains only simple words within user's vocabulary level, return "vocabulary": []
+
+## Context
+- User Vocabulary Level: {vocabularyLevel} (~{wordCount} words)
+- Words User is Learning: {unknownWords}
+- Available Words to Explain: {filteredWords}
+
+## STRICT SELECTION RULES
+1. You MUST ONLY choose words from "Available Words to Explain"
+2. Do NOT explain: reached, december, months, numbers, basic verbs
+3. If filteredWords = ["repository", "deprecated", "vue"], ONLY choose from these 3
+4. Prioritize: words in "Words User is Learning" list > words with frequency rank > {wordCount}
+
+## Negative Examples - DO NOT DO THIS
+❌ WRONG: Available Words = ["repository", "vue"], you explain "reached" (NOT in list!)
+❌ WRONG: Available Words = ["repository"], you explain "deprecated" (NOT in list!)
+❌ WRONG: Available Words = [], you still return vocabulary with words
+❌ WRONG: Explaining simple words like: get, make, go, see, come, take, use, know, think, want, look, give, find, tell, ask, work, seem, feel, try, leave, call, good, bad, big, small, old, new, first, last, long, short, high, low, right, wrong
+
+## Positive Examples - DO THIS INSTEAD
+✅ CORRECT: Available Words = [] → vocabulary: []
+✅ CORRECT: Available Words = ["repository", "deprecated"] → vocabulary: [{"word": "repository", "simpleDefinition": "...", "chineseTranslation": "..."}, {"word": "deprecated", "simpleDefinition": "...", "chineseTranslation": "..."}]
+✅ CORRECT: Available Words = ["cat", "run"] with user level 2000 → vocabulary: [] (these are simple)
 
 ## Task 1: Grammar Marking
-Wrap subject, predicate, and object with HTML tags:
-- <subject>...</subject> for subject
-- <predicate>...</predicate> for predicate (verb)
-- <object>...</object> for object
-
-Example: "The <subject>repository</subject> <predicate>is</predicate> <object>old</object>."
+Wrap subject, predicate, object with tags:
+- <subject>...</subject>
+- <predicate>...</predicate>
+- <object>...</object>
 
 ## Task 2: Vocabulary Explanation
-Identify 5-8 difficult/uncommon words or phrases:
-- For technical docs: Keep terms like Vue, React, API, etc.
-- Focus on advanced vocabulary, idioms, phrasal verbs
-- Provide simple definition using basic words (top 2000 common words)
-- If the definition still contains uncommon words, annotate them with Chinese translation in parentheses, e.g., "a facility (设施) where things are kept"
-- Provide accurate Chinese translation for the main word
+ONLY select from: {filteredWords}
 
-## Task 3: Full Translation
-Translate to Chinese considering context:
-- For technical docs: Keep technical terms in English
-- For general content: Full Chinese translation
-- Use natural, simple Chinese
+For each word:
+- simpleDefinition: Simple English explanation using basic words (top 2000)
+- chineseTranslation: Accurate Chinese translation
+- If definition still has hard words, add Chinese in parentheses: "a place (地方) to keep things"
 
-Return ONLY a valid JSON in this exact format:
+Return 5-8 most difficult words from the list, or fewer if list is small. Return [] if all are simple.
+
+## Task 3: Translation
+Translate to Chinese. For technical content, keep terms like Vue, React, API in English.
+
+## Output Format
+Return EXACTLY this JSON structure:
 
 {
   "markedText": "The <subject>repository</subject> <predicate>is</predicate> <object>old</object>.",
   "vocabulary": [
     {
       "word": "repository",
-      "simpleDefinition": "a facility (设施) where things are stored or kept",
+      "simpleDefinition": "a place where things are stored or kept",
       "chineseTranslation": "仓库"
     }
   ],
   "translation": "这个仓库很旧。"
 }
 
-Rules:
-- Keep original text exactly, only add tags
-- Handle multiple sentences and clauses
-- Mark all subjects/predicates/objects
-- Tags must not overlap
-- Limit vocabulary to 5-8 most important items
+**If no difficult words:**
+{
+  "markedText": "The <subject>cat</subject> <predicate>is</predicate> <object>cute</object>.",
+  "vocabulary": [],
+  "translation": "这只猫很可爱。"
+}
 
-Text to analyze:
-{text}`
+Text: {text}`
+
+// 简化版 prompt - 当没有需要分析的单词时使用
+const SIMPLE_PROMPT = `Analyze this text. No vocabulary explanation needed - return empty array.
+
+Mark grammar with <subject>, <predicate>, <object> tags.
+Translate to Chinese (keep technical terms in English).
+
+Return JSON: {"markedText": "...", "vocabulary": [], "translation": "..."}
+
+Text: {text}`
+
+/**
+ * Extract words from text (excluding punctuation and numbers)
+ */
+function extractWords(text: string): string[] {
+  // Match words including contractions (e.g., "don't", "it's")
+  const words = text.match(/\b[a-zA-Z]+(?:'[a-zA-Z]+)?\b/g) || []
+  return words.map((w) => w.toLowerCase())
+}
 
 /**
  * Build grammar analysis prompt with context
  */
-function buildGrammarPrompt(text: string, context: SimplifyContext): string {
-  return GRAMMAR_PROMPT
-    .replace('{pageUrl || \'Not provided\'}', context.pageUrl || 'Not provided')
-    .replace('{pageTitle || \'Not provided\'}', context.pageTitle || 'Not provided')
-    .replace('{pageDescription || \'Not provided\'}', context.pageDescription || 'Not provided')
+async function buildGrammarPrompt(
+  text: string,
+  context: SimplifyContext
+): Promise<string> {
+  // 确保状态已初始化
+  if (!vocabularyState.initialized) {
+    await vocabularyState.init()
+  }
+
+  // 获取词汇量信息
+  const level = vocabularyState.level
+  const wordCount = parseInt(level.replace('LEVEL_', ''))
+
+  // 从全局状态获取不认识的单词列表（限制数量）
+  const unknownWords = vocabularyState.unknownWordsList.slice(0, 50)
+
+  // 从文本中提取所有单词
+  const allWords = extractWords(text)
+
+  // 过滤：移除已认识的单词、常见功能词、标点符号
+  const commonFunctionWords = new Set([
+    'the',
+    'a',
+    'an',
+    'and',
+    'or',
+    'but',
+    'in',
+    'on',
+    'at',
+    'to',
+    'for',
+    'of',
+    'with',
+    'is',
+    'are',
+    'was',
+    'were',
+    'be',
+    'been',
+    'being',
+    'have',
+    'has',
+    'had',
+    'do',
+    'does',
+    'did',
+    'will',
+    'would',
+    'could',
+    'should',
+    'may',
+    'might',
+    'must',
+    'can',
+    'this',
+    'that',
+    'these',
+    'those',
+    'i',
+    'you',
+    'he',
+    'she',
+    'it',
+    'we',
+    'they',
+    'my',
+    'your',
+    'his',
+    'her',
+    'its',
+    'our',
+    'their',
+  ])
+
+  // 获取已认识的单词集合
+  const knownWordsSet = new Set(vocabularyState.knownWordsList)
+
+  // 过滤后的单词列表
+  const filteredWords = Array.from(
+    new Set(
+      allWords.filter(
+        (word) =>
+          word.length > 1 && // 单字母单词除外
+          !commonFunctionWords.has(word) && // 不是常见功能词
+          !knownWordsSet.has(word) && // 不是已认识的单词
+          !/^\d+$/.test(word) // 不是纯数字
+      )
+    )
+  ).slice(0, 200) // 限制最多200个单词
+
+  // 如果没有需要分析的单词，使用简化版 prompt
+  if (filteredWords.length === 0) {
+    return SIMPLE_PROMPT.replace('{text}', text)
+  }
+
+  // 否则使用完整的分析 prompt
+  return GRAMMAR_PROMPT.replace('{pageUrl}', context.pageUrl || 'Not provided')
+    .replace('{pageTitle}', context.pageTitle || 'Not provided')
+    .replace('{pageDescription}', context.pageDescription || 'Not provided')
+    .replace('{vocabularyLevel}', level)
+    .replace('{wordCount}', wordCount.toString())
+    .replace(
+      '{unknownWords}',
+      unknownWords.length > 0 ? unknownWords.join(', ') : 'None'
+    )
+    .replace('{filteredWords}', filteredWords.join(', '))
     .replace('{text}', text)
 }
 
@@ -407,7 +548,7 @@ export function useLLM() {
     error.value = null
 
     // Build prompt with context
-    const prompt = buildGrammarPrompt(originalText, context)
+    const prompt = await buildGrammarPrompt(originalText, context)
 
     const messages: LLMMessage[] = [{ role: 'user', content: prompt }]
 

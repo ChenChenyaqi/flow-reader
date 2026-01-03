@@ -31,8 +31,13 @@
           >
             <ChevronLeft :size="16" />
           </button>
-          <div class="w-2 h-2 rounded-full" :class="showConfig ? 'bg-emerald-500' : 'bg-indigo-500 animate-pulse'"></div>
-          <span class="font-bold text-slate-200 text-sm">{{ showConfig ? 'Config Model' : 'FluentLens' }}</span>
+          <div
+            class="w-2 h-2 rounded-full"
+            :class="showConfig ? 'bg-emerald-500' : 'bg-indigo-500 animate-pulse'"
+          ></div>
+          <span class="font-bold text-slate-200 text-sm">{{
+            showConfig ? 'Config Model' : 'FluentLens'
+          }}</span>
         </div>
         <div class="flex items-center gap-2">
           <!-- Collapse Toggle (only when not in config mode) -->
@@ -60,7 +65,9 @@
           >
             <Settings :size="16" />
           </button>
+          <!-- Close button (hidden when in config mode) -->
           <button
+            v-if="!showConfig"
             @click.stop="handleClose"
             class="text-slate-400 hover:text-white transition"
           >
@@ -92,86 +99,126 @@
       <!-- Config Form -->
       <div
         v-if="showConfig && !isCollapsed"
-        class="p-5 space-y-4"
+        class="space-y-4"
       >
-        <div>
-          <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
-            Provider
-          </label>
-          <select
-            v-model="localConfig.provider"
-            @change="handleProviderChange"
-            class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          >
-            <option value="zhipu">智谱 AI (Zhipu)</option>
-            <option value="openai">OpenAI</option>
-            <option value="custom">Custom</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
-            API Key
-          </label>
-          <input
-            v-model="localConfig.apiKey"
-            type="password"
-            class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            placeholder="Input API Key"
-          />
-        </div>
-
-        <div>
-          <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
-            Model Name
-          </label>
-          <input
-            v-model="localConfig.model"
-            class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            placeholder="Input Model Name"
-          />
-        </div>
-
-        <div v-if="localConfig.provider === 'custom'">
-          <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
-            API URL
-          </label>
-          <input
-            v-model="localConfig.apiUrl"
-            type="url"
-            class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            placeholder="https://api.example.com/v1/chat/completions"
-          />
-        </div>
-
-        <div
-          v-if="configError"
-          class="text-red-400 text-sm bg-red-950/30 border border-red-900 rounded-lg p-3"
-        >
-          {{ configError }}
-        </div>
-
-        <div
-          v-if="saveSuccess"
-          class="text-emerald-400 text-sm bg-emerald-950/30 border border-emerald-900 rounded-lg p-3 flex items-center gap-2"
-        >
-          <Check :size="16" />
-          <span>Config saved successfully!</span>
-        </div>
-
-        <div class="flex gap-2 pt-2">
+        <!-- Tab Menu -->
+        <div class="flex gap-1 px-5 pt-5">
           <button
-            @click="showConfig = false"
-            class="flex-1 bg-slate-700 text-slate-200 py-2 rounded-lg hover:bg-slate-600 transition text-sm font-medium"
+            @click="configTab = ConfigTabType.LLM"
+            class="flex-1 px-3 py-2 text-xs font-medium rounded-lg transition-colors"
+            :class="
+              configTab === ConfigTabType.LLM
+                ? 'bg-indigo-600 text-white'
+                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+            "
           >
-            Cancel
+            LLM Config
           </button>
           <button
-            @click="handleSaveConfig"
-            class="flex-1 bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition text-sm font-medium"
+            @click="configTab = ConfigTabType.VOCABULARY"
+            class="flex-1 px-3 py-2 text-xs font-medium rounded-lg transition-colors"
+            :class="
+              configTab === ConfigTabType.VOCABULARY
+                ? 'bg-indigo-600 text-white'
+                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+            "
           >
-            Save Config
+            Vocabulary
           </button>
+        </div>
+
+        <!-- LLM Config Panel -->
+        <div
+          v-if="configTab === ConfigTabType.LLM"
+          class="px-5 pb-5 space-y-4"
+        >
+          <div>
+            <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
+              Provider
+            </label>
+            <select
+              v-model="localConfig.provider"
+              @change="handleProviderChange"
+              class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="zhipu">智谱 AI (Zhipu)</option>
+              <option value="openai">OpenAI</option>
+              <option value="custom">Custom</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
+              API Key
+            </label>
+            <input
+              v-model="localConfig.apiKey"
+              type="password"
+              class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Input API Key"
+            />
+          </div>
+
+          <div>
+            <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
+              Model Name
+            </label>
+            <input
+              v-model="localConfig.model"
+              class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Input Model Name"
+            />
+          </div>
+
+          <div v-if="localConfig.provider === 'custom'">
+            <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
+              API URL
+            </label>
+            <input
+              v-model="localConfig.apiUrl"
+              type="url"
+              class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="https://api.example.com/v1/chat/completions"
+            />
+          </div>
+
+          <div
+            v-if="configError"
+            class="text-red-400 text-sm bg-red-950/30 border border-red-900 rounded-lg p-3"
+          >
+            {{ configError }}
+          </div>
+
+          <div
+            v-if="saveSuccess"
+            class="text-emerald-400 text-sm bg-emerald-950/30 border border-emerald-900 rounded-lg p-3 flex items-center gap-2"
+          >
+            <Check :size="16" />
+            <span>Config saved successfully!</span>
+          </div>
+
+          <div class="flex gap-2 pt-2">
+            <button
+              @click="showConfig = false"
+              class="flex-1 bg-slate-700 text-slate-200 py-2 rounded-lg hover:bg-slate-600 transition text-sm font-medium"
+            >
+              Cancel
+            </button>
+            <button
+              @click="handleSaveConfig"
+              class="flex-1 bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition text-sm font-medium"
+            >
+              Save Config
+            </button>
+          </div>
+        </div>
+
+        <!-- Vocabulary Config Panel -->
+        <div
+          v-else-if="configTab === ConfigTabType.VOCABULARY"
+          class="px-5 pb-5"
+        >
+          <VocabularyLevelSelector />
         </div>
       </div>
 
@@ -326,10 +373,20 @@
 
 <script setup lang="ts">
 import { ref, watch, nextTick, onUnmounted } from 'vue'
-import { Minus, Plus, Settings, X, AlertTriangle, Loader2, ChevronLeft, Check } from 'lucide-vue-next'
+import {
+  Minus,
+  Plus,
+  Settings,
+  X,
+  AlertTriangle,
+  Loader2,
+  ChevronLeft,
+  Check,
+} from 'lucide-vue-next'
 import { useLLM } from '../composables/useLLM'
 import GrammarHighlight from './GrammarHighlight.vue'
 import VocabularySection from './VocabularySection.vue'
+import VocabularyLevelSelector from './VocabularyLevelSelector.vue'
 import TranslationSection from './TranslationSection.vue'
 import { storage } from '@/shared/services/storage'
 import { LLMProvider } from '@/shared/types/llm'
@@ -351,11 +408,26 @@ const emit = defineEmits<{
   (e: 'configSaved'): void
 }>()
 
-const { error, simplifiedText, simplifyLoading, simplify, reset, grammarAnalysis, grammarLoading, cancelPendingRequests } =
-  useLLM()
+// Config Tab 类型
+enum ConfigTabType {
+  LLM = 'LLM',
+  VOCABULARY = 'VOCABULARY',
+}
+
+const {
+  error,
+  simplifiedText,
+  simplifyLoading,
+  simplify,
+  reset,
+  grammarAnalysis,
+  grammarLoading,
+  cancelPendingRequests,
+} = useLLM()
 
 // Config state
 const showConfig = ref(false)
+const configTab = ref<ConfigTabType>(ConfigTabType.LLM)
 const modelConfig = ref<LLMConfig>({
   provider: LLMProvider.ZHIPU,
   apiKey: '',
@@ -370,7 +442,7 @@ const saveSuccess = ref(false)
 // Load config when card opens
 watch(
   () => props.showCard,
-  async (show) => {
+  async show => {
     if (show) {
       const config = await storage.getLLMConfig()
       if (config) {
