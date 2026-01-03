@@ -14,7 +14,7 @@
 
 ### 详细描述
 
-**FluentRead** 是一款强大的 Chrome 浏览器扩展，通过 AI 技术将您的网页阅读转化为英语学习体验。
+**FluentRead** 是一款强大的浏览器扩展，通过 AI 技术将您的网页阅读转化为英语学习体验。
 
 ### 核心功能
 
@@ -75,7 +75,7 @@
 
 ### Detailed Description
 
-**FluentRead** is a powerful Chrome extension that transforms your web browsing into an English learning experience through AI technology.
+**FluentRead** is a powerful extension that transforms your web browsing into an English learning experience through AI technology.
 
 ### Key Features
 
