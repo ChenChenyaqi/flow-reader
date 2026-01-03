@@ -28,5 +28,5 @@ dist-ssr
 .env.local
 .env.*.local
 
-dist.crx
-dist.pem
+*.crx
+*.pem
