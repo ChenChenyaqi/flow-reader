@@ -16,7 +16,7 @@ function copyIcons() {
       const distDir = path.resolve(__dirname, 'dist')
 
       // Icon files to copy
-      const icons = ['icon-16.png', 'icon-48.png', 'icon-96.png', 'icon-128.png']
+      const icons = ['icon-16.png', 'icon-32.png', 'icon-48.png', 'icon-96.png']
 
       icons.forEach(icon => {
         const src = path.join(publicDir, icon)
@@ -27,6 +27,13 @@ function copyIcons() {
           console.log(`✅ Copied ${icon} to dist/`)
         }
       })
+
+      // Remove icon-300.png from dist if it exists
+      const icon300 = path.join(distDir, 'icon-300.png')
+      if (fs.existsSync(icon300)) {
+        fs.unlinkSync(icon300)
+        console.log(`🗑️  Removed icon-300.png from dist/`)
+      }
 
       // Copy _locales directory
       const copyLocales = (srcDir: string, destDir: string) => {
@@ -110,7 +117,6 @@ function createZip() {
 }
 
 export default defineConfig({
-
   plugins: [vue(), crx({ manifest }), tailwindcss(), copyIcons(), createZip()],
   server: {
     port: 5174,

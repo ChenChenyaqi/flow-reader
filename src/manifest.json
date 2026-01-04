@@ -2,18 +2,22 @@
   "manifest_version": 3,
   "name": "FluentRead",
   "version": "1.0.0",
+  "description": "FluentRead - AI 驱动的英语学习助手，选中任意英文文本即时获得简化、语法分析和生词翻译",
   "default_locale": "zh_CN",
   "icons": {
     "16": "icon-16.png",
+    "32": "icon-32.png",
     "48": "icon-48.png",
-    "128": "icon-128.png",
-    "300": "icon-128.png"
+    "128": "icon-128.png"
   },
   "action": {
     "default_icon": {
       "16": "icon-16.png",
-      "48": "icon-48.png"
-    }
+      "32": "icon-32.png",
+      "48": "icon-48.png",
+      "128": "icon-128.png"
+    },
+    "default_title": "FluentRead"
   },
   "background": {
     "service_worker": "src/background/index.ts",
