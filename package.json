@@ -10,8 +10,7 @@
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
-    "test": "vitest",
-    "generate-icons": "node scripts/generate-icons.mjs"
+    "test": "vitest"
   },
   "dependencies": {
     "lucide-vue-next": "^0.562.0",
