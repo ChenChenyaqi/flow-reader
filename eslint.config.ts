@@ -53,7 +53,7 @@ export default defineConfigWithVueTs(
       '@typescript-eslint/no-this-alias': 'warn',
 
       // 通用规则
-      'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
+      'no-console': 'off',
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
       'prefer-const': 'error',
       'no-var': 'error',
