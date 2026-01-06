@@ -2,6 +2,7 @@ import { ref } from 'vue'
 
 export function useSelection() {
   const selectionText = ref('')
+  const MIN_LENGTH = 3
 
   const getSelectionRange = () => {
     const selection = window.getSelection()
@@ -22,7 +23,7 @@ export function useSelection() {
     setTimeout(() => {
       const data = getSelectionRange()
 
-      if (data?.text) {
+      if (data?.text && data?.text.length >= MIN_LENGTH) {
         selectionText.value = data.text
         callback?.(data)
       } else {

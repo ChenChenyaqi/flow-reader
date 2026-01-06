@@ -5,15 +5,25 @@
       :icon-position="iconPosition"
       @click="handleIconClick"
     />
-    <LensCard
-      :show-card="showCard"
-      :card-position="cardPosition"
-      :selection-text="selectionText"
-      :has-config="hasConfig"
-      :trigger-simplify="triggerSimplify"
-      @close="closeCard"
-      @config-saved="handleConfigSaved"
-    />
+
+    <Transition
+      enter-active-class="transition duration-300 ease-out"
+      enter-from-class="opacity-0 translate-y-4"
+      enter-to-class="opacity-100 translate-y-0"
+      leave-active-class="transition duration-200 ease-in"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 translate-y-4"
+    >
+      <LensCard
+        v-if="showCard"
+        ref="lensCardRef"
+        :card-position="cardPosition"
+        :selection-text="selectionText"
+        :has-config="hasConfig"
+        @close="closeCard"
+        @config-saved="handleConfigSaved"
+      />
+    </Transition>
   </div>
 </template>
 
@@ -22,48 +32,43 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import LensIcon from './components/LensIcon.vue'
 import LensCard from './components/LensCard.vue'
 import { useSelection } from './composables/useSelection'
-import { usePosition } from './composables/usePosition'
-import { useClickOutside } from './composables/useClickOutside'
 import useControlConfigCard from './composables/useControlConfigCard'
-import { shouldShowIcon } from './utils/textUtils'
+import { host } from './hostElement'
+import useIcon from './composables/useIcon'
+import useCard from './composables/useCard'
 
-// --- Composables ---
+const { showIcon, iconPosition, updateIconPosition } = useIcon()
+const { showCard, cardPosition, updateCardPosition } = useCard()
 const { selectionText, clearSelection, handleMouseUp } = useSelection()
-const { iconPosition, cardPosition, setIconPosition, setCardPosition } = usePosition()
 const { hasConfig, loadConfig } = useControlConfigCard()
 
-// --- UI State ---
-const showIcon = ref(false)
-const showCard = ref(false)
-const triggerSimplify = ref(0)
+const lensCardRef = ref<any>(null)
 
 // --- Event Handlers ---
-const onSelectionMouseUp = () => {
-  handleMouseUp(data => {
-    // check selected text
-    if (!shouldShowIcon(data.text)) {
-      showIcon.value = false
-      return
-    }
+const onSelectionMouseUp = (event: MouseEvent) => {
+  // Check if mouseup occurred within the extension's host element
+  if (event.target instanceof Node && host.contains(event.target)) {
+    return
+  }
 
-    setIconPosition(data.rect)
+  handleMouseUp(data => {
+    updateIconPosition(data.rect)
     showIcon.value = true
   })
 }
 
-useClickOutside('fluent-read-host', () => {
+const hiddenIcon = () => {
   showIcon.value = false
-})
+}
 
 const handleIconClick = () => {
   showIcon.value = false
-
   if (showCard.value) {
     // Card already open: trigger re-analysis with new selection (don't update position)
-    triggerSimplify.value++
+    lensCardRef.value?.reAnalysis()
   } else {
     // Opening card for the first time: set position and show card
-    setCardPosition(iconPosition.value)
+    updateCardPosition(iconPosition.value)
     showCard.value = true
     loadConfig()
   }
@@ -82,9 +87,11 @@ const handleConfigSaved = () => {
 // --- Lifecycle ---
 onMounted(() => {
   document.addEventListener('mouseup', onSelectionMouseUp)
+  document.addEventListener('mousedown', hiddenIcon)
   loadConfig()
 })
 onUnmounted(() => {
   document.removeEventListener('mouseup', onSelectionMouseUp)
+  document.removeEventListener('mousedown', hiddenIcon)
 })
 </script>
