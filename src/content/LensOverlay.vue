@@ -25,6 +25,7 @@ import { useSelection } from './composables/useSelection'
 import { usePosition } from './composables/usePosition'
 import { useClickOutside } from './composables/useClickOutside'
 import useControlConfigCard from './composables/useControlConfigCard'
+import { shouldShowIcon } from './utils/textUtils'
 
 // --- Composables ---
 const { selectionText, clearSelection, handleMouseUp } = useSelection()
@@ -39,6 +40,12 @@ const triggerSimplify = ref(0)
 // --- Event Handlers ---
 const onSelectionMouseUp = () => {
   handleMouseUp(data => {
+    // check selected text
+    if (!shouldShowIcon(data.text)) {
+      showIcon.value = false
+      return
+    }
+
     setIconPosition(data.rect)
     showIcon.value = true
   })
