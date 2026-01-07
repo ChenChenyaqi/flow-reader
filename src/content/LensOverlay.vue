@@ -1,5 +1,5 @@
 <template>
-  <div class="fluent-read-container text-base font-sans antialiased text-slate-800">
+  <div class="flow-reader-container text-base font-sans antialiased text-slate-800">
     <LensIcon
       :show-icon="showIcon"
       :icon-position="iconPosition"

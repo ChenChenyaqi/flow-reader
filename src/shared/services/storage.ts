@@ -1,7 +1,7 @@
 import type { LLMConfig, MultiLLMConfig, LLMProvider } from '@/shared/types/llm'
 
 class StorageService {
-  private readonly LLM_CONFIG_KEY = 'fluent_read_llm_config'
+  private readonly LLM_CONFIG_KEY = 'flow_reader_llm_config'
 
   private getDefaultMultiConfig(): MultiLLMConfig {
     return {

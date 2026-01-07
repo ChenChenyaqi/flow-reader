@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**FluentRead** is a Chrome extension that turns passive reading into active fluency for English learning. It uses AI to provide instant text simplification, grammar analysis, and vocabulary learning when users select English text on any webpage.
+**FlowReader** is a Chrome extension that turns passive reading into active fluency for English learning. It uses AI to provide instant text simplification, grammar analysis, and vocabulary learning when users select English text on any webpage.
 
 Built with Vue 3, TypeScript, and Vite, using CRXJS for Chrome extension development.
 
@@ -77,7 +77,7 @@ The content script creates an isolated Shadow DOM to prevent CSS conflicts with 
 ```typescript
 // From src/content/index.ts
 const host = document.createElement("div");
-host.id = "fluent-read-host";
+host.id = "flow-reader-host";
 document.body.appendChild(host);
 
 const shadow = host.attachShadow({ mode: "open" });
@@ -312,17 +312,17 @@ src/
 
 **`src/shared/services/storage.ts`**: LLM config storage
 - Wrapper around `chrome.storage.local`
-- Keys: `fluent-read-llm-config`
+- Keys: `flow-reader-llm-config`
 - Type-safe get/set methods
 
 **`src/shared/services/vocabularyStorage.ts`**: Vocabulary storage
 - Wrapper around `chrome.storage.local`
-- Key: `fluent-read-vocabulary`
+- Key: `flow-reader-vocabulary`
 - Handles `UserVocabularyConfig` structure
 
 **`src/shared/services/languageStorage.ts`**: Language preference storage
 - Wrapper around `chrome.storage.local`
-- Key: `fluent-read-language`
+- Key: `flow-reader-language`
 - Stores user's selected language (zh-CN or en-US)
 
 ### i18n (Internationalization)
@@ -384,7 +384,7 @@ grammar:
 **Adding New Translations**:
 1. Add the translation key to both `src/shared/i18n/locales/zh-CN.ts` and `src/shared/i18n/locales/en-US.ts`
 2. Use in template with `{{ $t('path.to.key') }}` or in script with `t('path.to.key')`
-3. For dynamic values, use interpolation: `{{ $t('message', { name: 'FluentRead' }) }}`
+3. For dynamic values, use interpolation: `{{ $t('message', { name: 'FlowReader' }) }}`
 
 ## Type Definitions
 

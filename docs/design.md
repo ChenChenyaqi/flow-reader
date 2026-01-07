@@ -1,11 +1,11 @@
 
 ---
 
-# FluentRead - 产品设计文档 (PRD)
+# FlowReader - 产品设计文档 (PRD)
 
 | 项目 | 内容 |
 | :--- | :--- |
-| **产品名称** | FluentRead (流利透镜) |
+| **产品名称** | FlowReader (流利透镜) |
 | **版本** | v1.0.0 (MVP) |
 | **Slogan** | Turn Passive Reading into Active Fluency. (化被动阅读为主动掌握) |
 | **目标用户** | 具备英语基础（高中/四六级/B1+），希望通过阅读外刊、博客、论文来进阶英语能力的人群。 |
@@ -73,7 +73,7 @@
 ### 3.1 目录结构 (Vue 3 + Vite + CRXJS)
 
 ```text
-fluent-read/
+flow-reader/
 ├── src/
 │   ├── background/         # Service Worker (API Proxy)
 │   ├── content/            # 页面注入脚本
@@ -136,7 +136,7 @@ If the sentence contains idioms (e.g., "piece of cake"), explicitly point them o
     *   高亮色: 使用柔和的 Pastel 色系（淡蓝、淡红、淡绿），避免刺眼。
 
 ### 4.2 交互流程
-1.  **Selection:** 用户鼠标划词 -> 文本下方出现半透明 `FluentRead` 图标。
+1.  **Selection:** 用户鼠标划词 -> 文本下方出现半透明 `FlowReader` 图标。
 2.  **Activation:**
     *   点击图标 -> 图标膨胀变大，变为 Loading 动画。
     *   同时，Shadow DOM 容器挂载，面板淡入。
@@ -167,7 +167,7 @@ If the sentence contains idioms (e.g., "piece of cake"), explicitly point them o
 虽然是 MVP，但架构上要预留接口：
 
 1.  **PDF 阅读支持:** 这是一个巨大的市场（论文党）。利用 Chrome 自带的 PDF Viewer API 或 PDF.js 注入。
-2.  **多语种支持:** 架构上支持 Prompt 切换，未来可以做 "FluentRead for Japanese/French"。
+2.  **多语种支持:** 架构上支持 Prompt 切换，未来可以做 "FlowReader for Japanese/French"。
 3.  **YouTube 字幕增强:** 能够抓取 YouTube CC 字幕并进行同样的句法分析（解决听不懂长难句的问题）。
 
 这份文档将目标人群从“窄众（程序员）”转向了“大众（英语进阶者）”，同时保持了纯前端的技术轻便性。你可以直接基于此开始编码。

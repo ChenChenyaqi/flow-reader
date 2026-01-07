@@ -1,14 +1,14 @@
 {
   "extName": {
-    "message": "FluentRead",
+    "message": "FlowReader",
     "description": "Extension name"
   },
   "extDescription": {
-    "message": "FluentRead - AI-powered English learning assistant. Simplify complex text, analyze grammar, and learn vocabulary instantly while browsing.",
+    "message": "FlowReader - AI-powered English learning assistant. Simplify complex text, analyze grammar, and learn vocabulary instantly while browsing.",
     "description": "Extension short description"
   },
   "extFullDescription": {
-    "message": "FluentRead is a powerful browser extension that transforms your web browsing into an English learning experience through AI technology.\n\nKey Features:\n• Smart Simplification - Convert complex English sentences into simple, easy-to-understand English\n• Grammar Analysis - Visualize sentence structure (Subject-Predicate-Object)\n• Vocabulary Learning - Smart vocabulary detection with simple definitions and translations\n• Complete Translation - Accurate translations for selected text\n\nPerfect For:\n• English learners (A1-B2 level)\n• Developers reading technical documentation\n• Non-native speakers wanting to improve their English\n\nPrivacy Commitment:\n• All data stored locally, not uploaded to our servers\n• Only uses your configured API key to call LLM services\n• Your text content is used for real-time analysis only, not stored",
+    "message": "FlowReader is a powerful browser extension that transforms your web browsing into an English learning experience through AI technology.\n\nKey Features:\n• Smart Simplification - Convert complex English sentences into simple, easy-to-understand English\n• Grammar Analysis - Visualize sentence structure (Subject-Predicate-Object)\n• Vocabulary Learning - Smart vocabulary detection with simple definitions and translations\n• Complete Translation - Accurate translations for selected text\n\nPerfect For:\n• English learners (A1-B2 level)\n• Developers reading technical documentation\n• Non-native speakers wanting to improve their English\n\nPrivacy Commitment:\n• All data stored locally, not uploaded to our servers\n• Only uses your configured API key to call LLM services\n• Your text content is used for real-time analysis only, not stored",
     "description": "Extension full description"
   }
 }

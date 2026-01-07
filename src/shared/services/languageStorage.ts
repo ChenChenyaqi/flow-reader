@@ -1,6 +1,6 @@
 import type { SupportedLocale, LanguageConfig } from '@/shared/i18n/types'
 
-const STORAGE_KEY = 'fluent-read-language'
+const STORAGE_KEY = 'flow-reader-language'
 
 export const languageStorage = {
   /**
@@ -20,7 +20,7 @@ export const languageStorage = {
   async set(locale: SupportedLocale): Promise<void> {
     const config: LanguageConfig = {
       locale,
-      lastUpdated: Date.now()
+      lastUpdated: Date.now(),
     }
     await chrome.storage.local.set({ [STORAGE_KEY]: config })
   },
@@ -30,5 +30,5 @@ export const languageStorage = {
    */
   async remove(): Promise<void> {
     await chrome.storage.local.remove(STORAGE_KEY)
-  }
+  },
 }

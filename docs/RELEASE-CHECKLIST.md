@@ -1,4 +1,4 @@
-# FluentRead 发布检查清单
+# FlowReader 发布检查清单
 
 **版本**: 1.0.0
 **更新日期**: 2025-01-03
@@ -123,7 +123,7 @@
 - [ ] 登录 [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole)
 - [ ] 点击"新建项目"
 - [ ] 填写项目信息：
-  - [ ] **扩展名称**: FluentRead
+  - [ ] **扩展名称**: FlowReader
   - [ ] **描述**: AI 驱动的英语学习助手...
   - [ ] **类别**: 教育类
   - ] ] **语言**: 中文, English
@@ -246,7 +246,7 @@
 ### 关键文件位置
 
 ```
-fluent-read/
+flow-reader/
 ├── docs/
 │   ├── STORE-LISTING.md     # 商店描述
 │   ├── PRIVACY-POLICY.md     # 隐私政策
@@ -275,7 +275,7 @@ ls -lh dist/
 ### 发布后推广建议
 
 1. **社交媒体**
-   - Twitter: "刚发布了我的 Chrome 扩展 FluentRead！选中文本即时获得 AI 分析..."
+   - Twitter: "刚发布了我的 Chrome 扩展 FlowReader！选中文本即时获得 AI 分析..."
    - 微博、知乎、小红书分享
 
 2. **开发者社区**

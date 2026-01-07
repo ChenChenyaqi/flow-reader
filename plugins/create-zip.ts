@@ -37,7 +37,7 @@ export default function createZip() {
       addFiles(distDir)
 
       // Get version from package.json
-      const zipFileName = `fluent-read-v${packageJson.version}.zip`
+      const zipFileName = `flow-reader-v${packageJson.version}.zip`
       const zipPath = path.resolve(__dirname, '..', zipFileName)
 
       zip.writeZip(zipPath)

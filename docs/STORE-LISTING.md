@@ -1,6 +1,6 @@
-# FluentRead - Chrome Web Store 发布材料
+# FlowReader - Chrome Web Store 发布材料
 
-**扩展名称**: FluentRead
+**扩展名称**: FlowReader
 **版本**: 1.0.0
 **语言**: 中文/English
 
@@ -10,11 +10,11 @@
 
 ### 简短描述（128 字符限制）
 
-> FluentRead - AI 驱动的英语学习助手，选中任意英文文本即时获得简化、语法分析和生词翻译
+> FlowReader - AI 驱动的英语学习助手，选中任意英文文本即时获得简化、语法分析和生词翻译
 
 ### 详细描述
 
-**FluentRead** 是一款强大的浏览器扩展，通过 AI 技术将您的网页阅读转化为英语学习体验。
+**FlowReader** 是一款强大的浏览器扩展，通过 AI 技术将您的网页阅读转化为英语学习体验。
 
 ### 核心功能
 
@@ -63,7 +63,7 @@
 - 仅使用您配置的 API 密钥调用 LLM 服务
 - 您的文本内容仅用于实时分析，不被保存
 
-**立即安装 FluentRead，让每一次阅读都成为学习机会！**
+**立即安装 FlowReader，让每一次阅读都成为学习机会！**
 
 ---
 
@@ -71,11 +71,11 @@
 
 ### Short Description (132 characters max)
 
-> FluentRead - AI-powered English learning assistant. Simplify complex text, analyze grammar, and learn vocabulary instantly while browsing.
+> FlowReader - AI-powered English learning assistant. Simplify complex text, analyze grammar, and learn vocabulary instantly while browsing.
 
 ### Detailed Description
 
-**FluentRead** is a powerful extension that transforms your web browsing into an English learning experience through AI technology.
+**FlowReader** is a powerful extension that transforms your web browsing into an English learning experience through AI technology.
 
 ### Key Features
 
@@ -107,7 +107,7 @@
 
 ### How to Use
 
-1. Install FluentRead
+1. Install FlowReader
 2. Select English text on any webpage
 3. Click the floating icon
 4. View simplified version, grammar analysis, and vocabulary
@@ -125,7 +125,7 @@
 - Only uses your configured API key to call LLM services
 - Your text content is used for real-time analysis only, not stored
 
-**Install FluentRead now and turn every reading moment into a learning opportunity!**
+**Install FlowReader now and turn every reading moment into a learning opportunity!**
 
 ---
 

@@ -1,4 +1,4 @@
-# FluentRead - Chrome Web Store 发布指南
+# FlowReader - Chrome Web Store 发布指南
 
 ## 📦 发布材料准备情况
 
@@ -95,7 +95,7 @@ app icon style, high quality"
 ### Step 1: 构建扩展
 
 ```bash
-cd /Users/chenyaqi/Documents/code/fluent-read
+cd /Users/chenyaqi/Documents/code/flow-reader
 pnpm build
 ```
 
@@ -124,8 +124,8 @@ pnpm build
 ### Step 5: 填写商店信息
 
 从 `docs/STORE-LISTING.md` 复制以下内容：
-- **扩展名称**: FluentRead
-- **简短描述**: FluentRead - AI 驱动的英语学习助手...
+- **扩展名称**: FlowReader
+- **简短描述**: FlowReader - AI 驱动的英语学习助手...
 - **详细描述**: 完整的中文和英文描述
 - **功能列表**: 所有功能点
 

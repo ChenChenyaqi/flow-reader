@@ -1,4 +1,4 @@
-# FluentRead MVP 技术文档
+# FlowReader MVP 技术文档
 
 **版本**: v1.0.0
 **更新时间**: 2025-01-03
@@ -27,7 +27,7 @@
 
 ### 1.1 产品定位
 
-**FluentRead** 是一个 Chrome 浏览器扩展，通过 AI 技术将用户的被动阅读转化为主动的语言学习体验。
+**FlowReader** 是一个 Chrome 浏览器扩展，通过 AI 技术将用户的被动阅读转化为主动的语言学习体验。
 
 ### 1.2 核心价值
 
@@ -174,7 +174,7 @@ The repository is old.
 ```typescript
 // content/index.ts
 const host = document.createElement('div')
-host.id = 'fluent-read-host'
+host.id = 'flow-reader-host'
 document.body.appendChild(host)
 
 const shadow = host.attachShadow({ mode: 'open' })
@@ -240,7 +240,7 @@ interface MessageTypes {
 ## 4. 项目结构
 
 ```
-fluent-read/
+flow-reader/
 ├── src/
 │   ├── background/                    # 后台服务
 │   │   ├── index.ts                   # Service Worker 入口
@@ -595,10 +595,10 @@ interface VocabularyItem {
 
 ```typescript
 // LLM 配置
-chrome.storage.local.get('fluent-read-llm-config')
+chrome.storage.local.get('flow-reader-llm-config')
 
 // 词汇配置
-chrome.storage.local.get('fluent-read-vocabulary')
+chrome.storage.local.get('flow-reader-vocabulary')
 ```
 
 ---

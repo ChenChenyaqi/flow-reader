@@ -26,9 +26,9 @@ async function initializeApp() {
   app.use(i18n)
   app.mount(appContainer)
 
-  console.log('[FluentRead] Content script initialized')
+  console.log('[FlowReader] Content script initialized')
 }
 
 initializeApp().catch(err => {
-  console.error('[FluentRead] Initialization failed:', err)
+  console.error('[FlowReader] Initialization failed:', err)
 })

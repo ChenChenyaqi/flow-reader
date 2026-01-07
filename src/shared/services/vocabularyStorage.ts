@@ -6,7 +6,7 @@ import type {
 import { VocabularyLevel as VocabLevel } from '@/shared/types/vocabulary'
 import { WordMasteryStatus as MasteryStatus } from '@/shared/types/vocabulary'
 
-const STORAGE_KEY = 'fluent-read-vocabulary'
+const STORAGE_KEY = 'flow-reader-vocabulary'
 
 const DEFAULT_CONFIG: UserVocabularyConfig = {
   level: VocabLevel.LEVEL_2000,

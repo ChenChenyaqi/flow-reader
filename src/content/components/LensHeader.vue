@@ -18,7 +18,7 @@
         :class="showConfig ? 'bg-emerald-500' : 'bg-indigo-500 animate-pulse'"
       ></div>
       <span class="font-bold text-slate-200 text-sm">{{
-        showConfig ? $t('config.llmConfig') : 'FluentRead'
+        showConfig ? $t('config.llmConfig') : 'FlowReader'
       }}</span>
     </div>
     <div class="flex items-center gap-2">
