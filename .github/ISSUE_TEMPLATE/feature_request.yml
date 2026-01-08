@@ -1,0 +1,35 @@
+---
+name: Feature Request
+description: Suggest an idea or enhancement
+title: '[Feat]: '
+labels: ['enhancement']
+body:
+  - type: textarea
+    attributes:
+      label: Feature Description
+      description: What feature would you like to see?
+      placeholder: Clear and concise description of the feature
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Use Cases
+      description: When and how would this feature be used?
+      placeholder: |
+        - Scenario 1: Reading technical docs...
+        - Scenario 2: Learning vocabulary...
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Proposed Solution (optional)
+      description: Do you have any ideas on how to implement this?
+      placeholder: Share your thoughts or mockups...
+
+  - type: textarea
+    attributes:
+      label: Alternatives (optional)
+      description: Are there any alternative solutions or workarounds?
+      placeholder: What have you tried so far?
