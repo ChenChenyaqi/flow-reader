@@ -52,11 +52,11 @@
 
 #### Option 2: Load Unpacked (For Developers/MVP)
 
-1. Download the latest `dist` zip from [Releases](https://github.com/ChenChenyaqi/flow-reader/releases) or build it yourself (see below).
+1. Download the latest `flow-reader` zip from [Releases](https://github.com/ChenChenyaqi/flow-reader/releases) or build it yourself (see below).
 2. Open Chrome/Edge and navigate to `chrome://extensions/`.
 3. Enable **"Developer mode"** in the top right corner.
 4. Click **"Load unpacked"**.
-5. Select the `dist` folder.
+5. Select the `flow-reader` folder.
 
 **Remember to refresh your browser after installation**
 

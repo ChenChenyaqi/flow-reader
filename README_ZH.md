@@ -51,11 +51,11 @@
 
 #### 方法 B：加载解压包（开发者/尝鲜）
 
-1. 在 [Releases](https://github.com/ChenChenyaqi/flow-reader/releases) 页面下载最新的 `dist` 压缩包并解压。
+1. 在 [Releases](https://github.com/ChenChenyaqi/flow-reader/releases) 页面下载最新的 `flow-reader` 压缩包并解压。
 2. 打开 Chrome 或 Edge 浏览器，访问 `chrome://extensions/`。
 3. 开启右上角的 **"开发者模式" (Developer mode)**。
 4. 点击左上角的 **"加载已解压的扩展程序" (Load unpacked)**。
-5. 选择解压后的 `dist` 文件夹。
+5. 选择解压后的 `flow-reader` 文件夹。
 
 **安装后记得刷新浏览器**
 
