@@ -144,7 +144,6 @@ Before submitting, ensure:
 - **Reload extension**: Go to `chrome://extensions/` and click "Reload"
 - **Debug**: Use Chrome DevTools Console + Vue DevTools
 - **Pre-commit hooks**: Auto-run `lint-staged` on staged files
-- **Pre-push hook**: Auto-runs `pnpm test` before pushing
 
 ---
 

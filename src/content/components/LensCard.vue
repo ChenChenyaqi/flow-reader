@@ -1,6 +1,6 @@
 <template>
   <div
-    ref="cardRef"
+    ref="_cardRef"
     class="fixed z-[999999] w-[400px] bg-slate-900 rounded-xl shadow-2xl border border-slate-700 overflow-hidden flex flex-col"
     :style="{
       left: `${position.x}px`,
@@ -76,7 +76,12 @@ const isCollapsed = ref(false)
 const analysisTabRef = ref<any>(null)
 const analysising = ref(false)
 
-const { cardRef, position, startDrag, initCardSizePosition } = useCardDrag(props.cardPosition)
+const {
+  cardRef: _cardRef,
+  position,
+  startDrag,
+  initCardSizePosition,
+} = useCardDrag(props.cardPosition)
 
 /**
  * Toggle collapse state with boundary check
