@@ -79,7 +79,7 @@ FlowReader is a **pure frontend application**. Your data stays on your device:
 
 [Get Started](/guide/quick-start) · [View Features](/features/) · [Configuration Guide](/configuration/)
 
-[GitHub Repository](https://github.com/ChenChenyaqi/flow-reader) · [Privacy Policy](/privacy-policy)
+[GitHub Repository](https://github.com/ChenChenyaqi/flow-reader) · [Privacy Policy](/PRIVACY-POLICY)
 
 </div>
 
