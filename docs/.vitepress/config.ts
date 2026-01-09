@@ -4,6 +4,7 @@ export default defineConfig({
   title: 'FlowReader',
   description: 'Turn passive reading into active language learning with AI',
   lang: 'en-US',
+  base: '/fluent-lens/',
 
   locales: {
     root: {
