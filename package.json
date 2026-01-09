@@ -11,7 +11,10 @@
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "test": "vitest",
-    "prepare": "husky"
+    "prepare": "husky",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
@@ -57,6 +60,7 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.9.3",
     "vite": "^7.3.0",
+    "vitepress": "^1.6.3",
     "vitest": "^4.0.16",
     "vue-tsc": "^3.2.1"
   }

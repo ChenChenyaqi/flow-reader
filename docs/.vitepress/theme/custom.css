@@ -1,0 +1,138 @@
+/**
+ * FlowReader Custom Styles
+ * Custom styles for VitePress documentation
+ */
+
+/* Header Navigation */
+.VPNav {
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+/* Logo styling */
+.VPNavBarTitle .title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+}
+
+.VPNavBarLogo {
+  height: 32px;
+  width: auto;
+}
+
+/* Navigation links */
+.VPNav .VPNavBarMenu .item {
+  font-weight: 500;
+}
+
+/* Ensure proper spacing in header */
+.VPNavBar .container {
+  max-width: calc(var(--vp-layout-max-width) - 64px);
+}
+
+/* Feature cards on home page */
+.VPFeatures {
+  margin-bottom: 4rem;
+}
+
+.VPFeature .icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Custom grid for How It Works section */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid var(--vp-c-divider);
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.grid div {
+  text-align: center;
+}
+
+.grid div strong {
+  display: block;
+  font-size: 1.2em;
+  margin-bottom: 0.5rem;
+  color: var(--vp-c-brand-1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Configuration grid styling */
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.config-grid div {
+  padding: 1rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+}
+
+.config-grid div strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--vp-c-brand-1);
+}
+
+/* Grammar highlight colors in documentation */
+.grammar-subject {
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 2px;
+}
+
+.grammar-predicate {
+  border-bottom: 2px solid #22c55e;
+  padding-bottom: 2px;
+}
+
+.grammar-object {
+  border-bottom: 2px solid #f97316;
+  padding-bottom: 2px;
+}
+
+/* Callout boxes */
+.vp-callout {
+  margin: 1.5rem 0;
+}
+
+/* Code block enhancements */
+.vp-code-group {
+  margin: 1rem 0;
+}
+
+/* Table styling */
+table {
+  display: table;
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 0.75rem;
+  border: 1px solid var(--vp-c-divider);
+  text-align: left;
+}
+
+table th {
+  background: var(--vp-c-bg-soft);
+  font-weight: 600;
+}
