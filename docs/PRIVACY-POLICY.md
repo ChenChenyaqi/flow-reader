@@ -1,218 +1,227 @@
-# FlowReader 隐私政策
+# Privacy Policy
 
-**生效日期**: 2025年1月3日
-**最后更新**: 2025年1月3日
-
----
-
-## 1. 概述
-
-欢迎使用 **FlowReader**（以下简称"本扩展"）。我们非常重视您的隐私。本隐私政策旨在向您说明我们如何收集、使用和保护您的信息。
-
-**重要说明**: FlowReader 是一个**客户端优先**的浏览器扩展，我们尽可能减少对您数据的收集和处理。
+**Effective Date**: January 3, 2025
+**Last Updated**: January 3, 2025
 
 ---
 
-## 2. 信息收集
+## 1. Overview
 
-### 2.1 我们收集的信息
+Welcome to **FlowReader** (the "Extension"). We take your privacy seriously. This privacy policy explains how we collect, use, and protect your information.
 
-#### 本地存储数据
-
-所有数据存储在您的浏览器本地（`chrome.storage.local`），**不会上传到我们的服务器**：
-
-| 数据类型 | 存储内容 | 存储位置 | 用途 |
-|---------|---------|---------|------|
-| **LLM 配置** | API 密钥、模型名称、服务商 | chrome.storage.local | 连接第三方 AI 服务 |
-| **词汇配置** | 词汇量等级、已认识/不认识的单词列表 | chrome.storage.local | 个性化生词过滤 |
-| **使用状态** | 是否首次使用、学习统计 | chrome.storage.local | 改进产品体验 |
-
-#### 日志数据
-
-我们**不会收集**以下数据：
-- ❌ 您访问的网站 URL
-- ❌ 您分析的文本内容
-- ❌ 您的学习记录
-- ❌ 您的个人信息（姓名、邮箱、IP 地址等）
-
-### 2.2 我们不收集的信息
-
-- **个人身份信息**: 不要求注册账户，不收集姓名、邮箱、手机号
-- **使用行为数据**: 不追踪您访问的网页、点击行为
-- **位置信息**: 不收集地理位置
-- **设备指纹**: 不生成设备唯一标识符
+**Important Note**: FlowReader is a **client-first** browser extension. We minimize data collection and processing as much as possible.
 
 ---
 
-## 3. 数据使用
+## 2. Information Collection
 
-### 3.1 本地数据的使用
+### 2.1 Information We Collect
 
-存储在本地的数据**仅用于扩展功能**：
+#### Locally Stored Data
 
-| 数据 | 使用方式 |
-|------|---------|
-| **API 密钥** | 发送到您配置的 LLM 服务商（OpenAI/智谱/自定义），获取 AI 分析结果 |
-| **词汇配置** | 根据您的词汇量等级过滤生词，标记单词掌握状态 |
-| **学习统计** | 在扩展界面显示统计信息（不共享） |
+All data is stored locally in your browser (`chrome.storage.local`), and **is not uploaded to our servers**:
 
-### 3.2 第三方服务的使用
+| Data Type                    | Content Stored                             | Storage Location     | Purpose                            |
+| ---------------------------- | ------------------------------------------ | -------------------- | ---------------------------------- |
+| **LLM Configuration**        | API keys, model names, providers           | chrome.storage.local | Connect to third-party AI services |
+| **Vocabulary Configuration** | Vocabulary level, known/unknown word lists | chrome.storage.local | Personalized vocabulary filtering  |
+| **Usage Status**             | First-time use, learning statistics        | chrome.storage.local | Improve product experience         |
 
-本扩展使用您配置的第三方 AI 服务（OpenAI、智谱 AI 等）：
+#### Log Data
 
-**数据发送**:
-- 您选中的**文本内容**会发送到您配置的 LLM 服务商
-- 发送内容包括：待分析的文本、系统提示词
+We **do not collect** the following data:
 
-**数据处理**:
-- 第三方服务根据内容返回分析结果
-- 分析结果**仅在浏览器本地显示**，**不被第三方保存**
+- ❌ URLs of websites you visit
+- ❌ Text content you analyze
+- ❌ Your learning records
+- ❌ Personal information (name, email, IP address, etc.)
 
-**第三方隐私政策**:
-- [OpenAI 隐私政策](https://openai.com/policies/privacy-policy)
-- [智谱 AI 隐私政策](https://bigmodel.cn/dev/aicenter#agreement)
+### 2.2 Information We Don't Collect
 
----
-
-## 4. 数据存储与安全
-
-### 4.1 数据存储位置
-
-**所有数据存储在您的浏览器本地**：
-- 存储位置：`chrome.storage.local`
-- 数据范围：仅限于本扩展使用的配置和状态数据
-- 数据隔离：不同用户/不同电脑的数据完全隔离
-
-### 4.2 数据安全
-
-我们采取以下措施保护您的数据：
-
-✅ **本地加密**: 浏览器自身的加密机制
-✅ **权限控制**: 仅本扩展可访问存储的数据
-✅ **不联网传输**: 数据不发送到我们的服务器
-✅ **用户控制**: 您可以随时清除数据
-
-### 4.3 数据保留
-
-| 数据类型 | 保留期限 | 清除方式 |
-|---------|---------|---------|
-| LLM 配置 | 永久（本地） | 卸载扩展或清除浏览器数据 |
-| 词汇配置 | 永久（本地） | 卸载扩展或清除浏览器数据 |
-| 浏览器缓存 | 会话期间 | 关闭浏览器自动清除 |
+- **Personal Identity**: No account registration required, we don't collect names, emails, phone numbers
+- **Usage Behavior**: We don't track which websites you visit or your click behavior
+- **Location**: No geolocation data collected
+- **Device Fingerprint**: No unique device identifiers generated
 
 ---
 
-## 5. 第三方服务
+## 3. Data Usage
 
-### 5.1 使用的第三方服务
+### 3.1 Use of Local Data
 
-本扩展使用以下第三方服务：
+Data stored locally is **only used for extension functionality**:
 
-| 服务 | 提供商 | 用途 | 数据处理 |
-|------|--------|------|---------|
-| **OpenAI API** | OpenAI | 提供 AI 分析能力 | 文本发送到其服务器进行分析 |
-| **智谱 AI API** | 智谱 AI | 提供 AI 分析能力 | 文本发送到其服务器进行分析 |
-| **自定义 API** | 用户配置 | 提供 AI 分析能力 | 文本发送到用户配置的服务器 |
+| Data                         | Usage                                                                                 |
+| ---------------------------- | ------------------------------------------------------------------------------------- |
+| **API Keys**                 | Sent to your configured LLM provider (OpenAI/Zhipu/Custom) to get AI analysis results |
+| **Vocabulary Configuration** | Filters new words based on your vocabulary level, marks word mastery status           |
+| **Learning Statistics**      | Display statistics in the extension interface (not shared)                            |
 
-### 5.2 第三方服务的数据处理
+### 3.2 Use of Third-Party Services
 
-**重要说明**:
-- 我们**不控制**第三方服务的数据处理
-- 您选中的文本会发送到第三方服务器
-- 请阅读第三方服务的隐私政策
+This extension uses third-party AI services you configure (OpenAI, Zhipu AI, etc.):
 
-**数据处理流程**:
+**Data Sent**:
+
+- The **text content** you select is sent to your configured LLM provider
+- Content includes: text to be analyzed, system prompts
+
+**Data Processing**:
+
+- Third-party services return analysis results based on the content
+- Analysis results are **only displayed locally in your browser**, **not saved by third parties**
+
+**Third-Party Privacy Policies**:
+
+- [OpenAI Privacy Policy](https://openai.com/policies/privacy-policy)
+- [Zhipu AI Privacy Policy](https://bigmodel.cn/dev/aicenter#agreement)
+
+---
+
+## 4. Data Storage & Security
+
+### 4.1 Data Storage Location
+
+**All data is stored locally in your browser**:
+
+- Storage location: `chrome.storage.local`
+- Data scope: Only configuration and status data used by this extension
+- Data isolation: Complete isolation between different users/computers
+
+### 4.2 Data Security
+
+We take the following measures to protect your data:
+
+✅ **Local Encryption**: Browser's built-in encryption mechanism
+✅ **Permission Control**: Only this extension can access stored data
+✅ **No Network Transfer**: Data is not sent to our servers
+✅ **User Control**: You can clear data at any time
+
+### 4.3 Data Retention
+
+| Data Type                | Retention Period  | Deletion Method                           |
+| ------------------------ | ----------------- | ----------------------------------------- |
+| LLM Configuration        | Permanent (local) | Uninstall extension or clear browser data |
+| Vocabulary Configuration | Permanent (local) | Uninstall extension or clear browser data |
+| Browser Cache            | Session only      | Automatically cleared when browser closes |
+
+---
+
+## 5. Third-Party Services
+
+### 5.1 Third-Party Services Used
+
+This extension uses the following third-party services:
+
+| Service          | Provider        | Purpose                          | Data Processing                         |
+| ---------------- | --------------- | -------------------------------- | --------------------------------------- |
+| **OpenAI API**   | OpenAI          | Provide AI analysis capabilities | Text sent to their servers for analysis |
+| **Zhipu AI API** | Zhipu AI        | Provide AI analysis capabilities | Text sent to their servers for analysis |
+| **Custom API**   | User-configured | Provide AI analysis capabilities | Text sent to user-configured server     |
+
+### 5.2 Third-Party Data Processing
+
+**Important Notice**:
+
+- We **do not control** third-party service data processing
+- Your selected text will be sent to third-party servers
+- Please review third-party service privacy policies
+
+**Data Processing Flow**:
+
 ```
-您的浏览器 → LLM API 服务商 → 返回分析结果 → 显示在扩展中
-    ↑              ↑
-    |              |
-本地发送        第三方处理
+Your Browser → LLM API Provider → Return Analysis → Display in Extension
+      ↑              ↑
+      |              |
+  Local Send    Third-Party Processing
 ```
 
 ---
 
-## 6. 您的权利
+## 6. Your Rights
 
-### 6.1 数据访问
+### 6.1 Data Access
 
-您可以随时访问存储在本地的数据：
+You can access data stored locally at any time:
 
-1. 打开 Chrome 扩展管理页面
-2. 找到 FlowReader
-3. 点击"详细信息"
-4. 查看"网站权限"中的存储数据
+1. Open Chrome extension management page
+2. Find FlowReader
+3. Click "Details"
+4. View storage data under "Site permissions"
 
-### 6.2 数据删除
+### 6.2 Data Deletion
 
-您可以随时删除所有数据：
+You can delete all data at any time:
 
-**方法 1**: 在扩展设置中清除数据
-**方法 2**: 卸载扩展（会自动清除所有数据）
-**方法 3**: 清除浏览器数据（chrome://settings/content）
+**Method 1**: Clear data in extension settings
+**Method 2**: Uninstall extension (automatically clears all data)
+**Method 3**: Clear browser data (chrome://settings/content)
 
-### 6.3 数据导出
+### 6.3 Data Export
 
-当前版本不支持数据导出。未来版本将添加：
-- 导出词汇配置为 JSON/CSV
-- 备份学习记录
+Current version does not support data export. Future versions will add:
+
+- Export vocabulary configuration as JSON/CSV
+- Backup learning records
 
 ---
 
-## 7. Cookie 与追踪技术
+## 7. Cookies & Tracking Technologies
 
-### 7.1 Cookie
+### 7.1 Cookies
 
-本扩展**不使用 Cookie**。
+This extension **does not use cookies**.
 
-### 7.2 追踪技术
+### 7.2 Tracking Technologies
 
-本扩展**不使用**以下追踪技术：
+This extension **does not use** the following tracking technologies:
+
 - ❌ Google Analytics
 - ❌ Facebook Pixel
-- ❌ 第三方追踪脚本
-- ❌ 广告追踪
+- ❌ Third-party tracking scripts
+- ❌ Ad tracking
 
 ---
 
-## 8. 儿童隐私
+## 8. Children's Privacy
 
-本扩展**不面向 13 岁以下儿童**。我们不会有意收集未满 13 岁儿童的信息。
-
----
-
-## 9. 政策变更
-
-我们可能会不时更新本隐私政策。重大变更时，我们会：
-
-1. 在扩展内通知您
-2. 更新此文档的"最后更新"日期
-3. 在发布新版本前提供说明
-
-**继续使用本扩展即表示您接受更新后的隐私政策。**
+This extension is **not intended for children under 13**. We do not knowingly collect information from children under 13.
 
 ---
 
-## 10. 联系我们
+## 9. Policy Changes
 
-如果您对本隐私政策有任何疑问或建议，请通过以下方式联系我们：
+We may update this privacy policy from time to time. For significant changes, we will:
 
-- **邮箱**: [待填写]
-- **GitHub Issues**: [项目仓库地址]
-- **Chrome Web Store**: 通过扩展评论区留言
+1. Notify you within the extension
+2. Update the "Last Updated" date in this document
+3. Provide notice before releasing new versions
 
----
-
-## 11. 法律声明
-
-### 11.1 管辖法律
-
-本隐私政策受中华人民共和国法律管辖。
-
-### 11.2 争议解决
-
-因本隐私政策产生的争议，双方应友好协商解决；协商不成的，任何一方可向我们所在地有管辖权的人民法院提起诉讼。
+**Continued use of this extension indicates acceptance of the updated privacy policy.**
 
 ---
 
-**版本**: v1.0.0
-**生效日期**: 2025年1月3日
+## 10. Contact Us
+
+If you have any questions or suggestions about this privacy policy, please contact us:
+
+- **Email**: [To be filled]
+- **GitHub Issues**: [Project Repository](https://github.com/ChenChenyaqi/flow-reader/issues)
+- **Chrome Web Store**: Leave a comment in the extension review section
+
+---
+
+## 11. Legal Notice
+
+### 11.1 Governing Law
+
+This privacy policy is governed by the laws of the People's Republic of China.
+
+### 11.2 Dispute Resolution
+
+Disputes arising from this privacy policy shall be resolved through friendly consultation. If consultation fails, either party may file a lawsuit with a people's court having jurisdiction at our location.
+
+---
+
+**Version**: v1.0.0
+**Effective Date**: January 3, 2025

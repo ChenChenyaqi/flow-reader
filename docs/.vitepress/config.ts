@@ -29,6 +29,7 @@ export default defineConfig({
       { text: 'Guide', link: '/guide/' },
       { text: 'Features', link: '/features/' },
       { text: 'Configuration', link: '/configuration/' },
+      { text: 'Privacy Policy', link: '/privacy-policy' },
     ],
 
     sidebar: {
@@ -58,6 +59,10 @@ export default defineConfig({
             { text: 'Language Settings', link: '/configuration/language-settings' },
           ],
         },
+        {
+          text: 'Legal',
+          items: [{ text: 'Privacy Policy', link: '/privacy-policy' }],
+        },
       ],
       '/zh/': [
         {
@@ -85,6 +90,10 @@ export default defineConfig({
             { text: '语言设置', link: '/zh/configuration/language-settings' },
           ],
         },
+        {
+          text: '法律条款',
+          items: [{ text: '隐私政策', link: '/zh/privacy-policy' }],
+        },
       ],
     },
 
@@ -107,6 +116,7 @@ export default defineConfig({
           { text: '指南', link: '/zh/guide/' },
           { text: '功能', link: '/zh/features/' },
           { text: '配置', link: '/zh/configuration/' },
+          { text: '隐私政策', link: '/zh/privacy-policy' },
         ],
         footer: {
           message: '基于 AGPL v3.0 许可发布。',
