@@ -8,6 +8,7 @@
   </p>
 
   <p>
+    <a href="https://chenchenyaqi.github.io/flow-reader/">📚 Documentation</a> |
     <a href="README_ZH.md">🌐 中文文档</a> |
     <a href="#installation">⬇️ Installation</a> |
     <a href="#usage">🚀 Usage</a>
@@ -38,9 +39,11 @@
   - Filters words based on your CEFR level (500~8000 words).
   - Provides simple English definitions and Chinese translations.
   - Remembers words you mark as "Known".
-- **🤖 Multi-Model Support**: Supports **Zhipu AI** (GLM-4), **OpenAI**, and custom API endpoints.
+- **🤖 Multi-Model Support**: Supports **Zhipu AI** (GLM-4.7), **OpenAI**, and custom API endpoints.
 
 ## 🚀 Getting Started
+
+**📚 [Full Documentation](https://chenchenyaqi.github.io/flow-reader/)** - Visit our VitePress site for comprehensive guides, features overview, and configuration instructions.
 
 ### Installation
 
@@ -68,7 +71,7 @@ Before using FlowReader, you need to configure your AI provider (BYOK - Bring Yo
 2. Click the **Settings** icon in the upper right corner of the pop-up **FlowReader** card.
 3. Go to the **Settings** card.
 4. Choose a service provider:
-   - **Zhipu AI (GLM-4)**: Recommended for users in China. [Get Free Key For New Users](https://open.bigmodel.en/)
+   - **Zhipu AI (GLM-4.7)**: Recommended for users in China. [Get Free Key For New Users](https://open.bigmodel.en/)
    - **OpenAI**: Standard GPT-5 models.
    - **Custom**: Compatible with any OpenAI-format API (e.g., DeepSeek, Local LLM).
    - **Other**

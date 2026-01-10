@@ -34,7 +34,7 @@ features:
     details: 根据您的 CEFR 等级（500~8000 词汇）过滤单词，提供定义和翻译，并记住您标记为"已认识"的单词。
   - icon: 🤖
     title: 多模型支持
-    details: 支持智谱 AI (GLM-4)、OpenAI 和自定义 API 端点，采用 BYOK（自备密钥）模式。
+    details: 支持智谱 AI (GLM-4.7)、OpenAI 和自定义 API 端点，采用 BYOK（自备密钥）模式。
   - icon: 🔒
     title: 隐私优先
     details: 您的 API 密钥和阅读数据仅存储在本地浏览器中，绝不会发送到我们的服务器。

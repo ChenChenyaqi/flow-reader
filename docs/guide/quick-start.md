@@ -11,7 +11,7 @@ FlowReader uses a **BYOK (Bring Your Own Key)** model, giving you control over w
 3. Click the **Settings** icon in the upper right corner of the FlowReader card
 4. Go to the **Settings** tab
 5. Choose your service provider:
-   - **Zhipu AI (GLM-4)**: Recommended for users in China. [Get Free Key](https://open.bigmodel.cn/)
+   - **Zhipu AI (GLM-4.7)**: Recommended for users in China. [Get Free Key](https://open.bigmodel.cn/)
    - **OpenAI**: Standard GPT models. [Get API Key](https://platform.openai.com/api-keys)
    - **Custom**: Compatible with any OpenAI-format API (e.g., DeepSeek, Local LLM)
 6. Enter your **API Key** and **Model Name**

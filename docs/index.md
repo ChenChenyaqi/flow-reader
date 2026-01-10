@@ -34,7 +34,7 @@ features:
     details: Filters words based on your CEFR level (500~8000 words), provides definitions and translations, and remembers words you mark as "Known".
   - icon: 🤖
     title: Multi-Model Support
-    details: Supports Zhipu AI (GLM-4), OpenAI, and custom API endpoints with BYOK (Bring Your Own Key).
+    details: Supports Zhipu AI (GLM-4.7), OpenAI, and custom API endpoints with BYOK (Bring Your Own Key).
   - icon: 🔒
     title: Privacy First
     details: Your API Keys and reading data are stored locally in your browser and never sent to our servers.

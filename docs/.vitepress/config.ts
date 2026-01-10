@@ -24,15 +24,6 @@ export default defineConfig({
 
   themeConfig: {
     logo: '/icon-128.png',
-
-    // English locale (root)
-    nav: [
-      { text: 'Guide', link: '/guide/' },
-      { text: 'Features', link: '/features/' },
-      { text: 'Configuration', link: '/configuration/' },
-      { text: 'Privacy Policy', link: '/privacy-policy' },
-    ],
-
     sidebar: {
       '/': [
         {
@@ -102,7 +93,7 @@ export default defineConfig({
 
     footer: {
       message: 'Released under the AGPL v3.0 License.',
-      copyright: 'Copyright © 2024-present FlowReader',
+      copyright: 'Copyright © 2026-present FlowReader',
     },
 
     search: {
@@ -121,7 +112,7 @@ export default defineConfig({
         ],
         footer: {
           message: '基于 AGPL v3.0 许可发布。',
-          copyright: 'Copyright © 2024-present FlowReader',
+          copyright: 'Copyright © 2026-present FlowReader',
         },
       },
     },

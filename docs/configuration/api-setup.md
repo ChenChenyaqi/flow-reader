@@ -4,7 +4,7 @@ FlowReader uses a **BYOK (Bring Your Own Key)** model, giving you full control o
 
 ## Supported Providers
 
-### Zhipu AI (GLM-4)
+### Zhipu AI (GLM-4.7)
 
 **Recommended for China users**
 

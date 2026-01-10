@@ -1,7 +1,7 @@
 # Privacy Policy
 
-**Effective Date**: January 3, 2025
-**Last Updated**: January 3, 2025
+**Effective Date**: January 3, 2026
+**Last Updated**: January 3, 2026
 
 ---
 
@@ -224,4 +224,4 @@ Disputes arising from this privacy policy shall be resolved through friendly con
 ---
 
 **Version**: v1.0.0
-**Effective Date**: January 3, 2025
+**Effective Date**: January 3, 2026

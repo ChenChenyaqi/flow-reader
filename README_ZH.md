@@ -8,6 +8,7 @@
   </p>
 
   <p>
+    <a href="https://chenchenyaqi.github.io/flow-reader/zh/">📚 完整文档</a> |
     <a href="README.md"> 🌐English</a> |
     <a href="#安装指南">⬇️ 安装指南</a> |
     <a href="#快速上手">🚀 快速上手</a>
@@ -37,9 +38,11 @@
   - 根据你的词汇量等级（500~8000词）智能过滤生词。
   - 提供简单的英文定义和中文翻译。
   - 支持标记“已认识”，系统会自动记住并过滤该单词。
-- **🤖 多模型支持**：原生支持 **智谱 AI (GLM-4)**（国内直连）、**OpenAI** 以及自定义 API。
+- **🤖 多模型支持**：原生支持 **智谱 AI (GLM-4.7)**（国内直连）、**OpenAI** 以及自定义 API。
 
 ## 🚀 快速上手
+
+**📚 [完整文档](https://chenchenyaqi.github.io/flow-reader/zh/)** - 访问我们的 VitePress 文档站，查看完整的使用指南、功能介绍和配置说明。
 
 ### 1. 安装插件
 

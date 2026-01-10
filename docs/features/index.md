@@ -27,7 +27,7 @@ Automatically highlights **Subject**, **Predicate**, and **Object** to help you 
 
 Native support for:
 
-- **Zhipu AI (GLM-4)** - Fast and reliable for China users
+- **Zhipu AI (GLM-4.7)** - Fast and reliable for China users
 - **OpenAI** - GPT models with advanced capabilities
 - **Custom APIs** - Any OpenAI-compatible endpoint
 

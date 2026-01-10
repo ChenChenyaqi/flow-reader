@@ -23,11 +23,11 @@ FlowReader 的智能简化功能将复杂的英语文本转换为简单易懂的
 
 **原文：**
 
-> "现代软件系统中复杂算法的实现需要对计算范式有全面的理解。"
+> "The implementation of sophisticated algorithms in modern software systems necessitates a comprehensive understanding of computational paradigms."
 
 **简化后：**
 
-> "现代软件使用智能的计算机程序。您需要了解计算机的工作原理才能很好地使用它们。"
+> "Modern software uses smart computer programs. You need to understand how computers work to use them well."
 
 ## 使用建议
 

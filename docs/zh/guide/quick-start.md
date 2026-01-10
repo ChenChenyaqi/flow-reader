@@ -11,7 +11,7 @@ FlowReader 采用 **BYOK（自备密钥）** 模式，让您完全控制使用�
 3. 点击 FlowReader 卡片右上角的 **设置** 图标
 4. 进入 **设置** 标签页
 5. 选择您的服务提供商：
-   - **智谱 AI (GLM-4)**：推荐中国用户使用 [获取免费密钥](https://open.bigmodel.cn/)
+   - **智谱 AI (GLM-4.7)**：推荐中国用户使用 [获取免费密钥](https://open.bigmodel.cn/)
    - **OpenAI**：标准 GPT 模型 [获取 API 密钥](https://platform.openai.com/api-keys)
    - **自定义**：任何兼容 OpenAI 格式的 API（如 DeepSeek、本地 LLM）
 6. 输入您的 **API 密钥** 和 **模型名称**

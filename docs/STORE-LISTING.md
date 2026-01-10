@@ -19,22 +19,26 @@
 ### 核心功能
 
 ✨ **智能简化**
+
 - 一键将复杂英语句子转化为简单易懂的英语（适合初学者）
 - 自动拆分长句，使用主动语态替换被动语态
 - 阅读技术文档从此不再困难
 
 📚 **语法分析**
+
 - 可视化展示句子结构（主语-谓语-宾语）
 - 颜色高亮标记，直观理解句子成分
 - 提升英语语法理解能力
 
 📖 **生词学习**
+
 - 智能识别生词（根据您的词汇量水平）
 - 提供简单英语定义 + 中文翻译
 - 一键标记单词为"认识"或"不认识"
 - 标记后的单词自动过滤，不再重复学习
 
 🌐 **完整翻译**
+
 - 为选中文本提供准确中文翻译
 - 技术文档自动保留专业术语
 
@@ -80,22 +84,26 @@
 ### Key Features
 
 ✨ **Smart Simplification**
+
 - Convert complex English sentences into simple, easy-to-understand English
 - Automatically break down long sentences and use active voice
 - Make technical documentation accessible to everyone
 
 📚 **Grammar Analysis**
+
 - Visualize sentence structure (Subject-Predicate-Object)
 - Color-coded highlighting for intuitive understanding
 - Improve your grammar comprehension
 
 📖 **Vocabulary Learning**
+
 - Smart vocabulary detection based on your proficiency level
 - Simple English definitions + Chinese translations
 - Mark words as "known" or "unknown" with one click
 - Filter out words you've already learned
 
 🌐 **Complete Translation**
+
 - Accurate Chinese translations for selected text
 - Preserves technical terms in documentation
 
@@ -184,6 +192,7 @@
 Chrome Web Store 要求至少提供 1 张截图，最多 5 张。
 
 **推荐尺寸**:
+
 - **1280x800** 或 **640x400** (宽 x 高)
 - **16:10** 或 **16:9** 比例
 - **PNG** 格式（推荐）或 JPG
@@ -191,49 +200,59 @@ Chrome Web Store 要求至少提供 1 张截图，最多 5 张。
 ### 建议截图场景
 
 #### 截图 1：主要功能展示
+
 **场景**: 在英文技术文档页面选中一段代码注释
 **内容**:
+
 - 浮动图标显示在选中文本旁边
 - 分析卡片打开，显示：
   - 简化文本
   - 语法高亮
   - 生词列表
   - 中文翻译
-**目的**: 展示核心功能
+    **目的**: 展示核心功能
 
 #### 截图 2：语法分析功能
+
 **场景**: 选中一个复杂句子
 **内容**:
+
 - 原文与简化文本对比
 - 主谓宾颜色高亮
 - 语法图例说明
-**目的**: 突出语法分析功能
+  **目的**: 突出语法分析功能
 
 #### 截图 3：生词学习功能
+
 **场景**: 分析结果中的生词区域
 **内容**:
+
 - 生词列表
 - 简单定义
 - 中文翻译（模糊效果，hover 显示）
 - "认识"/"不认识"按钮
-**目的**: 展示生词学习交互
+  **目的**: 展示生词学习交互
 
 #### 截图 4：配置界面
+
 **场景**: 配置卡片展开状态
 **内容**:
+
 - Tab 切换（LLM Config / Vocabulary）
 - LLM 配置表单
 - 词汇量等级选择（6个等级按钮）
 - 已认识/学习中的单词统计
-**目的**: 展示配置功能
+  **目的**: 展示配置功能
 
 #### 截图 5：多场景使用
+
 **场景**: 拼接 2-3 个使用场景
 **内容**:
+
 - 左侧：在英文博客选中段落
 - 右侧：在技术文档选中代码注释
 - 底部：在新闻网站选中标题
-**目的**: 展示通用性
+  **目的**: 展示通用性
 
 ### 截图制作工具推荐
 
@@ -245,11 +264,13 @@ Chrome Web Store 要求至少提供 1 张截图，最多 5 张。
 ### 截图设计规范
 
 **配色方案**:
+
 - 背景：网页原始内容
 - UI 组件：保持扩展原始样式（深色主题）
 - 标注：不添加额外文字或箭头（Chrome 审核偏好）
 
 **注意事项**:
+
 - 确保截图清晰、无模糊
 - 不要包含浏览器 UI（地址栏、书签栏等）
 - 展示真实使用场景
@@ -263,26 +284,29 @@ Chrome Web Store 要求至少提供 1 张截图，最多 5 张。
 
 Chrome Web Store 需要**至少 1 个**图标，建议准备多种尺寸：
 
-| 尺寸 | 用途 | 文件名 |
-|------|------|--------|
+| 尺寸        | 用途             | 文件名       |
+| ----------- | ---------------- | ------------ |
 | **128x128** | 商店展示（必需） | icon-128.png |
-| **48x48** | 扩展管理页 | icon-48.png |
-| **16x16** | 浏览器工具栏 | icon-16.png |
-| **96x96** | Chrome Web Store | icon-96.png |
+| **48x48**   | 扩展管理页       | icon-48.png  |
+| **16x16**   | 浏览器工具栏     | icon-16.png  |
+| **96x96**   | Chrome Web Store | icon-96.png  |
 
 ### 设计规范
 
 **视觉风格**:
+
 - 🔍 **放大镜元素**：象征"阅读""学习"
 - 📚 **书本元素**：象征"知识""教育"
 - 🔤 **字母元素**：象征"语言""文本"
 
 **配色方案**:
+
 - 主色：蓝色 (#4F46E5, indigo-600)
 - 辅助色：青色 (#06B6D4, cyan-500)
 - 背景：白色/透明
 
 **设计要求**:
+
 - PNG 格式
 - 透明背景
 - 清晰易识别（小尺寸下也能看清）
@@ -293,20 +317,24 @@ Chrome Web Store 需要**至少 1 个**图标，建议准备多种尺寸：
 如果暂时没有专业设计师，可以使用以下方案：
 
 **方案 1：在线图标生成器**
+
 - [Favicon.io](https://favicon.io/) - 输入文字自动生成
 - [Canva](https://www.canva.com/) - 使用模板设计
 
 **方案 2：AI 生成**
+
 - 使用 DALL-E、Midjourney 等 AI 工具
 - 提示词：`"A simple icon of a magnifying glass reading a book, minimal design, flat style, transparent background, blue color scheme, app icon style"`
 
 **方案 3：使用 Emoji**
+
 - 🔍 + 📚 组合
 - 需要转换为 PNG 格式
 
 ### 当前项目图标
 
 检查项目中是否已有图标：
+
 ```bash
 ls -la public/  # 查找图标文件
 ```
@@ -320,6 +348,7 @@ ls -la public/  # 查找图标文件
 隐私政策文件位置：`docs/PRIVACY-POLICY.md`
 
 **关键内容摘要**:
+
 - 本扩展不收集用户个人信息
 - 所有数据存储在本地（chrome.storage.local）
 - 文本内容仅用于实时 AI 分析，不被保存或上传
@@ -336,21 +365,25 @@ ls -la public/  # 查找图标文件
 **确保符合以下要求**:
 
 ✅ **内容安全**
+
 - 无恶意代码
 - 无版权侵权内容
 - 无色情、暴力、仇恨言论
 
 ✅ **API 使用**
+
 - 正确声明权限（storage, activeTab, scripting）
 - 不滥用扩展权限
 - 不在用户不知情的情况下收集数据
 
 ✅ **功能描述准确**
+
 - 描述的功能必须真实可用
 - 不夸大宣传
 - 不误导用户
 
 ✅ **用户体验**
+
 - 无强制广告
 - 无干扰性通知
 - 提供清晰的退出机制
@@ -417,6 +450,7 @@ ls -la public/  # 查找图标文件
 ## 12. 版本更新计划
 
 ### v1.0.0 (当前 MVP)
+
 - ✅ 文本选择与分析
 - ✅ AI 句子简化
 - ✅ 语法分析
@@ -425,12 +459,14 @@ ls -la public/  # 查找图标文件
 - ✅ 多 LLM 支持
 
 ### v1.1.0 (计划中)
+
 - [ ] 生词本页面
 - [ ] 学习统计
 - [ ] 数据导出
 - [ ] 性能优化
 
 ### v2.0.0 (未来)
+
 - [ ] 云端同步
 - [ ] 练习模式
 - [ ] 移动应用
@@ -438,5 +474,5 @@ ls -la public/  # 查找图标文件
 
 ---
 
-**最后更新**: 2025-01-03
+**最后更新**: 2026-01-03
 **版本**: v1.0.0
