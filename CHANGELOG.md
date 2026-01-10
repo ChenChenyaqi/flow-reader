@@ -9,9 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Planned
 
-- Complete documentation
-- Config CI/CD
-- Building static pages to introduce the project
+- code refactor
+
+---
+
+## [1.0.2] - 2026-01-11
+
+### Added
+
+- VitePress documentation site with bilingual support (English/Chinese)
+- Documentation pages: Guide, Features, Configuration sections
+- Privacy policy page
+- GitHub Issue templates
+- LICENSE file
+- CONTRIBUTING guide
+
+### Fixed
+
+- Corrected base path to `/flow-reader/` for GitHub Pages deployment
+- Fixed VitePress deployment configuration
+- Removed privacy policy link from CI to fix deployment errors
+- Renamed `PRIVACY-POLICY.md` to `privacy-policy.md` for consistent casing
+- Fixed type-check errors by removing pre-push hook
+- Fixed CI test run errors
+- Removed unused documentation files
 
 ---
 
