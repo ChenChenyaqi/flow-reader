@@ -158,10 +158,10 @@ const {
   simplifiedText,
   simplifyLoading,
   simplify,
+  analyzeGrammar,
   reset,
   grammarAnalysis,
   grammarLoading,
-  cancelPendingRequests,
 } = useLLM()
 
 watch([() => simplifyLoading.value, () => grammarLoading.value], loadings => {
@@ -190,10 +190,10 @@ const handleSimplify = () => {
   simplify(props.analyzingText, context, {
     stream: true,
   })
+  analyzeGrammar(props.analyzingText, context)
 }
 
 const cancelAnalysis = () => {
-  cancelPendingRequests()
   reset()
 }
 
