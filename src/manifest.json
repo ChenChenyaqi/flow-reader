@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "FlowReader - 心流阅读",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "FlowReader - 心流阅读 AI 驱动的英语学习助手，选中任意英文文本即时获得简化、语法分析和生词翻译",
   "default_locale": "zh_CN",
   "icons": {
