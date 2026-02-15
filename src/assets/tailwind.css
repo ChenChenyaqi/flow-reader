@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @plugin 'tailwindcss-animate';
 
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-primary: oklch(0.208 0.042 265.755); /* slate-900 */
   --color-primary-foreground: oklch(0.985 0.001 247.858); /* slate-50 */

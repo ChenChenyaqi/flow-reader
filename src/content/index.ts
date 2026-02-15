@@ -3,7 +3,8 @@ import LensOverlay from './LensOverlay.vue'
 import tailwindContent from '../assets/tailwind.css?inline'
 import { vocabularyState } from '@/shared/services/vocabularyState'
 import { initializeI18n } from '@/shared/i18n'
-import { host } from './hostElement'
+import { useTheme } from '@/content/composables/useTheme'
+import { host, setAppContainer } from './hostElement'
 
 // create shadow dom
 const shadow = host.attachShadow({ mode: 'open' })
@@ -21,6 +22,13 @@ async function initializeApp() {
   await vocabularyState.init()
 
   const i18n = await initializeI18n()
+
+  // Set app container reference for theme management
+  setAppContainer(appContainer)
+
+  // init theme
+  const { initTheme } = useTheme()
+  await initTheme()
 
   const app = createApp(LensOverlay)
   app.use(i18n)

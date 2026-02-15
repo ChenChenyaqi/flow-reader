@@ -1,12 +1,12 @@
 <template>
   <div class="mt-4">
-    <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+    <div class="text-xs font-bold text-gray-500 dark:text-slate-500 uppercase tracking-wider mb-2">
       {{ $t('card.vocabulary') }} ({{ items.length }})
     </div>
 
     <div
       v-if="items.length === 0"
-      class="text-slate-600 text-sm italic"
+      class="text-gray-500 dark:text-slate-600 text-sm italic"
     >
       {{ $t('card.noVocabulary') }}
     </div>
@@ -18,14 +18,16 @@
       <div
         v-for="item in items"
         :key="item.word"
-        class="bg-slate-800/50 rounded p-3"
+        class="bg-gray-100 dark:bg-slate-800/50 rounded p-3"
       >
-        <div class="font-semibold text-slate-200 mb-1">{{ item.word }}</div>
-        <p class="text-slate-400 text-sm mb-2">{{ item.simpleDefinition }}</p>
+        <div class="font-semibold text-gray-900 dark:text-slate-200 mb-1">{{ item.word }}</div>
+        <p class="text-gray-600 dark:text-slate-400 text-sm mb-2">{{ item.simpleDefinition }}</p>
         <p
           class="text-sm transition-all duration-300 cursor-default"
           :class="
-            hoveredWord === item.word ? 'text-slate-200' : 'text-slate-600 blur-sm select-none'
+            hoveredWord === item.word
+              ? 'text-gray-700 dark:text-slate-200'
+              : 'text-gray-500 dark:text-slate-600 blur-sm select-none'
           "
           @mouseenter="hoveredWord = item.word"
           @mouseleave="hoveredWord = ''"
@@ -40,7 +42,7 @@
             :class="
               markedWords[item.word] === 'known'
                 ? 'bg-green-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-green-600 hover:text-white'
+                : 'bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-green-600 hover:text-white'
             "
             @click="markAsKnown(item.word)"
           >
@@ -51,7 +53,7 @@
             :class="
               markedWords[item.word] === 'unknown'
                 ? 'bg-red-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-red-600 hover:text-white'
+                : 'bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-red-600 hover:text-white'
             "
             @click="markAsUnknown(item.word)"
           >

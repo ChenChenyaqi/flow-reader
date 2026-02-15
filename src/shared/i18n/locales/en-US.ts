@@ -19,6 +19,7 @@ export default {
     vocabulary: 'Vocabulary',
     other: 'Other',
     language: 'Language',
+    theme: 'Theme',
     provider: 'Provider',
     apiKey: 'API Key',
     model: 'Model Name',
@@ -26,6 +27,12 @@ export default {
     vocabularyLevel: 'Vocabulary Level',
     saveConfig: 'Save Configuration',
     configSaved: 'Configuration saved',
+  },
+
+  // Theme
+  theme: {
+    light: 'Light',
+    dark: 'Dark',
   },
 
   // Vocabulary Levels
