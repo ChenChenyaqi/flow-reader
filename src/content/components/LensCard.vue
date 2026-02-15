@@ -132,6 +132,7 @@ defineExpose({
       handleAnalysis()
     }
   },
+  isAnalyzing: () => analysising.value,
 })
 </script>
 
