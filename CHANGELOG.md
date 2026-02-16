@@ -9,11 +9,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Planned
 
-- dark/light themes
-
 ### Completed
 
-- code refactor
+---
+
+## [1.0.3] - 2026-02-16
+
+### Added
+
+- Full light theme support alongside existing dark theme
+- Custom scrollbar styling with theme adaptation (light/dark mode)
+- Theme persistence (user preference saved to storage)
+
+### Fixed
+
+- Scroll bar colors in light theme (previously showed dark colors)
+- Scroll event isolation (scrolling inside card no longer affects webpage scroll)
+- Text selection behavior during AI analysis
+
+### Changed
+
+- Improved theme switching mechanism with better Shadow DOM integration
 
 ---
 
@@ -68,4 +84,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[1.0.3]: https://github.com/ChenChenyaqi/flow-reader/releases/tag/v1.0.3
+[1.0.2]: https://github.com/ChenChenyaqi/flow-reader/releases/tag/v1.0.2
 [1.0.1]: https://github.com/ChenChenyaqi/flow-reader/releases/tag/v1.0.1
