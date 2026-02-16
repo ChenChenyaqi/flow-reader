@@ -19,6 +19,7 @@ export default {
     vocabulary: '词汇',
     other: '其它',
     language: '语言',
+    theme: '主题',
     provider: '服务商',
     apiKey: 'API 密钥',
     model: '模型名称',
@@ -26,6 +27,12 @@ export default {
     vocabularyLevel: '词汇量等级',
     saveConfig: '保存配置',
     configSaved: '配置已保存',
+  },
+
+  // 主题
+  theme: {
+    light: '浅色',
+    dark: '深色',
   },
 
   // 词汇等级

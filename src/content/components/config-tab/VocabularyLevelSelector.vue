@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-sm font-semibold text-slate-300 mb-3">
+    <div class="text-sm font-semibold text-gray-700 dark:text-slate-300 mb-3">
       {{ $t('config.vocabularyLevel') }}
     </div>
 
@@ -12,7 +12,7 @@
         :class="
           currentLevel === level
             ? 'bg-blue-600 text-white'
-            : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+            : 'bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-300 dark:hover:bg-slate-600'
         "
         @click="selectLevel(level as VocabularyLevel)"
       >
@@ -24,7 +24,7 @@
     <!-- Statistical information -->
     <div
       v-if="stats"
-      class="mt-3 pt-3 border-t border-slate-700 text-xs text-slate-400"
+      class="mt-3 pt-3 border-t border-gray-200 dark:border-slate-700 text-xs text-gray-500 dark:text-slate-400"
     >
       <div class="flex justify-between">
         <span>{{ $t('card.know') }}: {{ stats.knownCount }}</span>

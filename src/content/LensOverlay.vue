@@ -46,6 +46,11 @@ const lensCardRef = ref<any>(null)
 
 // --- Event Handlers ---
 const onSelectionMouseUp = (event: MouseEvent) => {
+  // Prevent updating selection text and icon when analysis is in progress
+  if (lensCardRef.value?.isAnalyzing()) {
+    return
+  }
+
   // Check if mouseup occurred within the extension's host element
   if (event.target instanceof Node && host.contains(event.target)) {
     return

@@ -1,13 +1,13 @@
 <template>
   <div class="mt-4">
-    <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+    <div class="text-xs font-bold text-gray-500 dark:text-slate-500 uppercase tracking-wider mb-2">
       {{ $t('card.translation') }}
     </div>
 
     <p
       v-if="translation"
-      class="text-slate-400 leading-relaxed transition-all duration-300 cursor-default"
-      :class="isHovered ? 'text-slate-200' : 'blur-sm select-none'"
+      class="text-gray-600 dark:text-slate-400 leading-relaxed transition-all duration-300 cursor-default"
+      :class="isHovered ? 'text-gray-900 dark:text-slate-200' : 'blur-sm select-none'"
       @mouseenter="isHovered = true"
       @mouseleave="isHovered = false"
     >

@@ -8,7 +8,7 @@
         :class="
           configTab === ConfigTabType.LLM
             ? 'bg-indigo-600 text-white'
-            : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+            : 'bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-300 dark:hover:bg-slate-600'
         "
       >
         {{ $t('config.llmConfig') }}
@@ -19,7 +19,7 @@
         :class="
           configTab === ConfigTabType.VOCABULARY
             ? 'bg-indigo-600 text-white'
-            : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+            : 'bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-300 dark:hover:bg-slate-600'
         "
       >
         {{ $t('config.vocabulary') }}
@@ -30,7 +30,7 @@
         :class="
           configTab === ConfigTabType.OTHER
             ? 'bg-indigo-600 text-white'
-            : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+            : 'bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-300 dark:hover:bg-slate-600'
         "
       >
         {{ $t('config.other') }}
@@ -43,13 +43,15 @@
       class="px-5 pb-5 space-y-4"
     >
       <div>
-        <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
+        <label
+          class="block mb-2 text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider"
+        >
           {{ $t('config.provider') }}
         </label>
         <select
           v-model="localConfig.provider"
           @change="handleProviderChange"
-          class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          class="w-full bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-700 text-gray-900 dark:text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
         >
           <option value="zhipu">{{ $t('provider.zhipu') }}</option>
           <!-- <option value="doubao">{{ $t('provider.doubao') }}</option> -->
@@ -63,50 +65,56 @@
       </div>
 
       <div>
-        <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
+        <label
+          class="block mb-2 text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider"
+        >
           {{ $t('config.apiKey') }}
         </label>
         <input
           v-model="localConfig.apiKey"
           type="password"
-          class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          class="w-full bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-700 text-gray-900 dark:text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
           :placeholder="$t('config.apiKey')"
         />
       </div>
 
       <div>
-        <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
+        <label
+          class="block mb-2 text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider"
+        >
           {{ $t('config.model') }}
         </label>
         <input
           v-model="localConfig.model"
-          class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          class="w-full bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-700 text-gray-900 dark:text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
           :placeholder="$t('config.model')"
         />
       </div>
 
       <div v-if="localConfig.provider === 'custom'">
-        <label class="block mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
+        <label
+          class="block mb-2 text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider"
+        >
           {{ $t('config.apiUrl') }}
         </label>
         <input
           v-model="localConfig.apiUrl"
           type="url"
-          class="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          class="w-full bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-700 text-gray-900 dark:text-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
           placeholder="https://api.example.com/v1/chat/completions"
         />
       </div>
 
       <div
         v-if="configError"
-        class="text-red-400 text-sm bg-red-950/30 border border-red-900 rounded-lg p-3"
+        class="text-red-500 dark:text-red-400 text-sm bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 rounded-lg p-3"
       >
         {{ configError }}
       </div>
 
       <div
         v-if="saveSuccess"
-        class="text-emerald-400 text-sm bg-emerald-950/30 border border-emerald-900 rounded-lg p-3 flex items-center gap-2"
+        class="text-emerald-600 dark:text-emerald-400 text-sm bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900 rounded-lg p-3 flex items-center gap-2"
       >
         <Check :size="16" />
         <span>{{ $t('config.configSaved') }}</span>
@@ -115,7 +123,7 @@
       <div class="flex gap-2 pt-2">
         <button
           @click="$emit('close')"
-          class="flex-1 bg-slate-700 text-slate-200 py-2 rounded-lg hover:bg-slate-600 transition text-sm font-medium"
+          class="flex-1 bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-slate-200 py-2 rounded-lg hover:bg-gray-300 dark:hover:bg-slate-600 transition text-sm font-medium"
         >
           {{ $t('common.cancel') }}
         </button>
@@ -139,9 +147,10 @@
     <!-- Other Config Panel -->
     <div
       v-else-if="configTab === ConfigTabType.OTHER"
-      class="px-5 pb-5"
+      class="px-5 pb-5 space-y-4"
     >
       <LanguageSwitcher />
+      <ThemeSwitcher />
     </div>
   </div>
 </template>
@@ -150,6 +159,7 @@
 import { onMounted, ref } from 'vue'
 import { Check } from 'lucide-vue-next'
 import LanguageSwitcher from './LanguageSwitcher.vue'
+import ThemeSwitcher from './ThemeSwitcher.vue'
 import VocabularyLevelSelector from './VocabularyLevelSelector.vue'
 import { LLMConfig, LLMProvider } from '@/shared/types/llm'
 import { storage } from '@/shared/services/storage'
