@@ -10,7 +10,7 @@
     <button
       v-if="showIcon"
       @mousedown.stop.prevent="$emit('click')"
-      class="fixed z-[999999] group flex items-center justify-center w-8 h-8 bg-slate-900 hover:bg-indigo-600 rounded-lg shadow-lg cursor-pointer transition-colors border border-slate-700/50"
+      class="fixed z-[999999] group flex items-center justify-center w-8 h-8 bg-white dark:bg-slate-900 hover:bg-indigo-600 rounded-lg shadow-lg cursor-pointer transition-colors border border-gray-400 dark:border-slate-700/50"
       :style="{
         left: `${iconPosition.x}px`,
         top: `${iconPosition.y}px`,
@@ -18,7 +18,7 @@
     >
       <Search
         :size="20"
-        class="text-white"
+        class="text-gray-700 dark:text-white"
       />
     </button>
   </Transition>

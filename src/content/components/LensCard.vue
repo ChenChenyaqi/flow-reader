@@ -1,7 +1,7 @@
 <template>
   <div
     ref="_cardRef"
-    class="fixed z-[999999] w-[400px] bg-slate-900 rounded-xl shadow-2xl border border-slate-700 overflow-hidden flex flex-col"
+    class="fixed z-[999999] w-[400px] bg-white dark:bg-slate-900 rounded-xl shadow-2xl border border-gray-200 dark:border-slate-700 overflow-hidden flex flex-col"
     :style="{
       left: `${position.x}px`,
       top: `${position.y}px`,
@@ -132,6 +132,7 @@ defineExpose({
       handleAnalysis()
     }
   },
+  isAnalyzing: () => analysising.value,
 })
 </script>
 
