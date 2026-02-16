@@ -1,5 +1,5 @@
 <template>
-  <div class="p-5 max-h-[60vh] overflow-y-auto">
+  <div class="p-5 max-h-[60vh] overflow-y-auto scroll-container">
     <!-- Simplified Version -->
     <div class="mb-4">
       <div
@@ -217,5 +217,3 @@ defineExpose({
   cancelAnalysis,
 })
 </script>
-
-<style scoped></style>
